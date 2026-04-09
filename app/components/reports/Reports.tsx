@@ -52,7 +52,7 @@ export default function Reports() {
       {/* Key Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         {[
-          { label: 'Total RFQs', value: '137', icon: TrendingUp, color: 'blue' },
+          { label: 'Total RFPs', value: '137', icon: TrendingUp, color: 'blue' },
           { label: 'Win Rate', value: '73.2%', icon: Target, color: 'green' },
           { label: 'Revenue', value: '$10.9M', icon: DollarSign, color: 'indigo' },
           { label: 'Avg Deal Size', value: '$134K', icon: Calendar, color: 'purple' },
@@ -87,9 +87,9 @@ export default function Reports() {
           </ResponsiveContainer>
         </div>
 
-        {/* RFQ Performance */}
+        {/* RFP Performance */}
         <div className="bg-white rounded-lg border border-gray-200 p-6">
-          <h2 className="text-lg font-semibold text-gray-900 mb-4">RFQ Performance</h2>
+          <h2 className="text-lg font-semibold text-gray-900 mb-4">RFP Performance</h2>
           <ResponsiveContainer width="100%" height={300}>
             <BarChart data={performanceData}>
               <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
@@ -97,7 +97,7 @@ export default function Reports() {
               <YAxis />
               <Tooltip />
               <Legend />
-              <Bar dataKey="rfqs" fill="#6366f1" name="RFQs" />
+              <Bar dataKey="rfqs" fill="#6366f1" name="RFPs" />
               <Bar dataKey="quotations" fill="#10b981" name="Quotations" />
               <Bar dataKey="won" fill="#3b82f6" name="Won" />
             </BarChart>
@@ -113,7 +113,7 @@ export default function Reports() {
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">User</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">RFQs</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">RFPs</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Quotations</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Conversion Rate</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Avg Deal Value</th>
@@ -152,7 +152,7 @@ export default function Reports() {
             <thead className="bg-gray-50 border-b border-gray-200">
               <tr>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Customer</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Total RFQs</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Total RFPs</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Won</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Total Value</th>
                 <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase">Conversion Rate</th>

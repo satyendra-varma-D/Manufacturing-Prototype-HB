@@ -13,7 +13,7 @@ export default function RFQExtraction() {
   if (!rfq) {
     return (
       <div className="text-center py-12">
-        <p className="text-gray-500">RFQ not found</p>
+        <p className="text-gray-500">RFP not found</p>
       </div>
     );
   }

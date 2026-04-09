@@ -29,7 +29,7 @@ const navGroups = [
   {
     title: 'Work',
     items: [
-      { name: 'RFQs', path: '/rfqs', icon: FileText },
+      { name: 'RFPs', path: '/rfqs', icon: FileText },
       { name: 'Quotations', path: '/quotations', icon: FileCheck },
       { name: 'Customers', path: '/customers', icon: Users },
     ]

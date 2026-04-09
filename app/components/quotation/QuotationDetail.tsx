@@ -127,7 +127,7 @@ export default function QuotationDetail() {
                 <p className="text-sm font-semibold text-emerald-600">94.2% AI Support</p>
               </div>
               <div className="space-y-1.5">
-                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">RFQ Anchor</p>
+                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">RFP Anchor</p>
                 <Link to={`/rfqs/${quotation.rfqId}`} className="text-sm font-semibold text-indigo-600 hover:underline">{quotation.rfqId}</Link>
               </div>
           </div>

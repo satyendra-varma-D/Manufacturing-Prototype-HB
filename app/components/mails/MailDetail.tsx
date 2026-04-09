@@ -9,12 +9,14 @@ import {
   Maximize2, ZoomIn, ZoomOut, X, Info, TrendingUp,
   Award, Activity, Target, ArrowDownRight, Scale,
   Map, HardHat, ZapOff, Table, Building2, Cpu,
-  ChevronDown, DollarSign, Sparkles
+  ChevronDown, DollarSign, Sparkles, BrainCircuit
 } from 'lucide-react';
 import { useState } from 'react';
 import { mockMails } from '../../data/mockMails';
 import { mockQuotations, mockKnowledgeBase, mockCustomers, mockRFQs } from '../../data/mockData';
 import { useAuth } from '../../contexts/AuthContext';
+import warehouseBlueprint from './warehouse_blueprint.png';
+import historicBlueprint from '../../../complex_industrial_floorplan.png';
 
 export default function MailDetail() {
   const { id } = useParams();
@@ -42,7 +44,15 @@ export default function MailDetail() {
         baseCost: 342300,
         margin: '18.5%', 
         date: 'Nov 2025',
-        parameters: { zone: 'ZONE-03-F', area: '1,100 sqm', load: 'PN-380' }
+        blueprint: warehouseBlueprint,
+        parameters: { 
+          zone: 'ZONE-03-F', 
+          area: '112,000 sq ft', 
+          load: 'PN-380',
+          height: '36 ft',
+          floor: '50 kN/m²',
+          docks: '12 Docks'
+        }
     },
     { 
         id: 'KB-2024-312', 
@@ -52,7 +62,15 @@ export default function MailDetail() {
         baseCost: 97500,
         margin: '22%', 
         date: 'Sep 2024',
-        parameters: { zone: 'SEC-LOG-01', area: '850 sqm', load: 'PN-220' }
+        blueprint: historicBlueprint,
+        parameters: { 
+          zone: 'SEC-LOG-01', 
+          area: '85,000 sq ft', 
+          load: 'PN-220',
+          height: '28 ft',
+          floor: '35 kN/m²',
+          docks: '06 Docks'
+        }
     }
   ];
 
@@ -93,199 +111,245 @@ export default function MailDetail() {
         </header>
 
         <div className="flex-1 flex overflow-hidden">
-           {/* Left Column */}
-           <div className="flex-[0.55] flex flex-col border-r border-gray-100 bg-gray-50/20 relative">
-              <div className="flex-1 relative overflow-hidden flex items-center justify-center p-12">
-                 <div className="absolute top-10 left-10 z-20 flex flex-col gap-3">
-                    <button onClick={() => setZoomLevel(prev => Math.min(prev + 0.3, 4))} className="p-4 bg-white text-gray-400 hover:text-indigo-600 rounded-2xl shadow-xl border border-gray-100">
-                       <ZoomIn className="w-6 h-6" />
-                    </button>
-                    <button onClick={() => setZoomLevel(prev => Math.max(prev - 0.3, 0.5))} className="p-4 bg-white text-gray-400 hover:text-indigo-600 rounded-2xl shadow-xl border border-gray-100">
-                       <ZoomOut className="w-6 h-6" />
-                    </button>
-                 </div>
-                 
-                 <div className="relative transition-transform duration-700 ease-in-out" style={{ transform: `scale(${zoomLevel})` }}>
-                    <div className="w-[850px] aspect-[16/10] bg-white rounded-[40px] shadow-[0_48px_120px_-32px_rgba(0,0,0,0.12)] border border-gray-100 relative overflow-hidden">
-                       <img 
-                          src="technical_floor_plan_blueprint_proper_1775646406909.png" 
-                          alt="Drawing" 
-                          className="w-full h-full object-contain opacity-90"
-                       />
-                       <div className="absolute inset-0 bg-indigo-50/5 pointer-events-none" />
-                       <svg className="absolute inset-0 w-full h-full pointer-events-none">
-                          <rect x="50" y="50" width="300" height="200" fill="#6366f111" stroke="#6366f1" strokeWidth="2" strokeDasharray="8,4" />
-                          <text x="60" y="45" fill="#6366f1" fontSize="12" fontWeight="bold">ZONE-04A: PRODUCTION</text>
-                          <rect x="400" y="100" width="150" height="300" fill="#10b98108" stroke="#10b981" strokeWidth="2" strokeDasharray="8,4" />
-                          <text x="410" y="90" fill="#10b981" fontSize="12" fontWeight="bold">MA-SYS: OVERHEAD RAIL</text>
-                       </svg>
-                    </div>
-                 </div>
+            <div className="flex-1 flex flex-col border-r border-gray-100 bg-gray-50/20 overflow-y-auto custom-scrollbar">
+               <div className="p-4 space-y-6 flex flex-col items-center">
+                  
+                  {/* Split Comparison View */}
+                  <div className="flex gap-6 w-full max-w-[1140px] items-start justify-center">
+                     
+                     {/* 1. Current Layout */}
+                     <div className="flex flex-col gap-4">
+                        <div className="flex items-center justify-between px-2">
+                           <span className="text-[10px] font-bold text-indigo-600 uppercase tracking-widest bg-indigo-50 px-2 py-1 rounded">Current RFP Layout</span>
+                           <span className="text-[9px] font-bold text-gray-400">DWG-B04-SEC-09</span>
+                        </div>
+                        <div className="relative transition-transform duration-700 ease-in-out bg-white rounded-[24px] shadow-[0_32px_80px_-24px_rgba(0,0,0,0.08)] border border-gray-100 overflow-hidden" 
+                             style={{ 
+                                transform: `scale(${zoomLevel})`,
+                                width: '540px',
+                                height: '800px'
+                             }}>
+                           <img 
+                              src={warehouseBlueprint} 
+                              alt="Current Layout" 
+                              className="w-full h-full object-contain bg-[#fafafa] opacity-[0.98]"
+                           />
+                           <div className="absolute inset-0 bg-indigo-50/5 pointer-events-none" />
+                           <svg className="absolute inset-0 w-full h-full pointer-events-none">
+                              <g transform="translate(280, 150)">
+                                 <circle r="4" fill="#6366f1" />
+                                 <circle r="10" fill="none" stroke="#6366f1" strokeWidth="1" className="animate-ping" />
+                                 <text x="12" y="3" fill="#6366f1" fontSize="8" fontWeight="bold">PROPOSED HUB</text>
+                              </g>
+                           </svg>
+                        </div>
+                     </div>
 
-                 <div className="absolute bottom-10 right-10 bg-white/90 backdrop-blur-md p-6 rounded-3xl border border-gray-100 shadow-2xl flex items-center gap-6">
-                    <div>
-                       <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-none mb-1">Drawing ID</p>
-                       <p className="text-sm font-bold text-gray-900 leading-none">DWG-B04-SEC-09</p>
-                    </div>
-                    <div className="w-px h-10 bg-gray-100" />
-                    <span className="flex items-center gap-2 px-4 py-1.5 bg-emerald-50 text-emerald-600 text-[10px] font-bold rounded-full border border-emerald-100">
-                       <ShieldCheck className="w-3.5 h-3.5" /> VERIFIED
-                    </span>
-                 </div>
-              </div>
+                     <div className="h-[800px] w-px bg-gray-100 mt-10" />
 
-              {/* Workspace Spacer */}
-              <div className="flex-1 bg-white border-t border-gray-100 flex items-center justify-center">
-                 <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em] opacity-30">Technical Analysis Active</p>
-              </div>
-           </div>
+                     {/* 2. Historical Baseline */}
+                     <div className="flex flex-col gap-4">
+                        <div className="flex items-center justify-between px-2">
+                           <span className="text-[10px] font-bold text-emerald-600 uppercase tracking-widest bg-emerald-50 px-2 py-1 rounded">Match: {currentMatchModel.id}</span>
+                           <span className="text-[9px] font-bold text-gray-400">Baseline Verified</span>
+                        </div>
+                        <div className="relative transition-transform duration-700 ease-in-out bg-white rounded-[24px] shadow-[0_32px_80px_-24px_rgba(0,0,0,0.08)] border border-gray-100 overflow-hidden" 
+                             style={{ 
+                                transform: `scale(${zoomLevel})`,
+                                width: '540px',
+                                height: '800px'
+                             }}>
+                           <img 
+                              src={currentMatchModel.blueprint} 
+                              alt="Historical Baseline" 
+                              className="w-full h-full object-contain bg-[#fafafa] opacity-[0.4] grayscale"
+                           />
+                           <div className="absolute inset-0 bg-emerald-50/10 pointer-events-none" />
+                           <svg className="absolute inset-0 w-full h-full pointer-events-none">
+                               <g transform="translate(260, 140)">
+                                 <circle r="4" fill="#10b981" />
+                                 <text x="12" y="3" fill="#10b981" fontSize="8" fontWeight="bold">HISTORIC ANCHOR</text>
+                              </g>
+                           </svg>
+                        </div>
+                     </div>
+                  </div>
 
-           {/* Right Column: Prefilled Fields & Financial Calculator */}
-           <div className="flex-[0.45] bg-white border-l border-gray-100 flex flex-col overflow-y-auto custom-scrollbar">
-              <div className="p-12 space-y-12">
-                 
-                 {/* 1. Facility Information */}
-                 <div className="space-y-8">
-                    <div className="flex items-center gap-4">
-                       <div className="w-1 bg-indigo-600 h-6 rounded-full" />
-                       <h3 className="text-sm font-bold text-gray-900 uppercase tracking-widest">Project Summary</h3>
-                    </div>
-                    
-                    <div className="grid grid-cols-1 gap-8">
-                       <div className="space-y-3">
-                          <label className="text-[11px] font-bold text-gray-400 uppercase tracking-widest pl-2">Project Classification</label>
-                          <div className="w-full px-6 py-5 bg-gray-50 border border-gray-200 rounded-[24px] text-[15px] font-bold text-gray-900 flex justify-between items-center shadow-inner">
-                             <span>B04-INFRA-2026</span>
-                             <ChevronDown className="w-5 h-5 text-gray-300" />
-                          </div>
-                       </div>
-                       
-                       <div className="grid grid-cols-2 gap-8">
-                          <div className="space-y-3">
-                             <label className="text-[11px] font-bold text-gray-400 uppercase tracking-widest pl-2">Client Identity</label>
-                             <div className="w-full px-6 py-5 bg-white border border-gray-100 rounded-[24px] text-[15px] font-bold text-gray-900 shadow-sm">
-                                TechCorp Group
-                             </div>
-                          </div>
-                          <div className="space-y-3">
-                             <label className="text-[11px] font-bold text-gray-400 uppercase tracking-widest pl-2">Facility Zone</label>
-                             <div className="w-full px-6 py-5 bg-white border border-gray-100 rounded-[24px] text-[15px] font-bold text-gray-900 shadow-sm">
-                                Zone B04-A
-                             </div>
-                          </div>
-                       </div>
-                    </div>
-                 </div>
+                  {/* Matched Intelligence Gallery (Directly Below) */}
+                  <div className="w-full max-w-[1100px] space-y-4 pt-6 border-t border-gray-100">
+                     <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-2">
+                           <History className="w-3.5 h-3.5 text-indigo-600" />
+                           <h3 className="text-xs font-bold text-gray-900 uppercase tracking-[0.2em]">Select Baseline for Comparison</h3>
+                        </div>
+                        <span className="text-[9px] font-bold text-gray-400 uppercase tracking-widest">{matchedRecords.length} Historical Matches Available</span>
+                     </div>
 
-                 {/* 2. Operational Specs (Comparison Enabled) */}
-                 <div className="space-y-8 pt-8 border-t border-gray-50">
-                    <div className="flex items-center justify-between">
-                       <div className="flex items-center gap-4">
-                          <div className="w-1 bg-indigo-600 h-6 rounded-full" />
-                          <h3 className="text-sm font-bold text-gray-900 uppercase tracking-widest">Technical Parameters</h3>
-                       </div>
-                    </div>
+                     <div className="grid grid-cols-2 gap-4">
+                        {matchedRecords.map((match) => (
+                           <button 
+                              key={match.id}
+                              onClick={() => setSelectedMatchId(match.id)}
+                              className={`group bg-white p-3.5 rounded-[20px] border transition-all text-left flex items-center gap-4 hover:shadow-xl hover:shadow-indigo-500/5 ${selectedMatchId === match.id ? 'border-indigo-600 ring-2 ring-indigo-50' : 'border-gray-100 hover:border-indigo-200'}`}
+                           >
+                              <div className="w-14 h-20 bg-gray-50 rounded-lg overflow-hidden border border-gray-100 flex-shrink-0 group-hover:scale-105 transition-transform">
+                                 <img src={warehouseBlueprint} className="w-full h-full object-cover opacity-30 grayscale group-hover:grayscale-0 transition-all" />
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                 <div className="flex items-center justify-between mb-1.5">
+                                    <span className="text-[8px] font-bold text-indigo-400 uppercase tracking-widest bg-indigo-50 px-1.5 py-0.5 rounded">{match.id}</span>
+                                    <div className="flex items-center gap-1 text-emerald-600 font-bold text-[10px] ring-1 ring-emerald-100 px-1.5 py-0.5 rounded-full bg-emerald-50">
+                                       <Target className="w-2.5 h-2.5" /> {match.match}%
+                                    </div>
+                                 </div>
+                                 <p className="text-[11px] font-bold text-gray-900 truncate leading-tight group-hover:text-indigo-600 transition-colors uppercase tracking-tight">{match.name}</p>
+                                 <div className="flex items-center gap-3 mt-2 opacity-60">
+                                    <div className="flex items-center gap-1.5 text-[8px] font-bold text-gray-400 uppercase tracking-widest">
+                                       <Calendar className="w-2.5 h-2.5" /> {match.date}
+                                    </div>
+                                 </div>
+                              </div>
+                           </button>
+                        ))}
+                     </div>
+                  </div>
+               </div>
 
-                    <div className="grid grid-cols-2 gap-8 relative">
-                       {/* Current Values */}
-                       <div className="space-y-6">
-                          <div className="space-y-2">
-                             <p className="text-[9px] font-bold text-indigo-400 uppercase tracking-widest bg-indigo-50 px-2 py-0.5 rounded w-max">Active extraction</p>
-                             <div className="space-y-6">
-                                <div className="space-y-2">
-                                   <p className="text-[9px] font-bold text-gray-300 uppercase tracking-widest ml-1">Area (SQM)</p>
-                                   <div className="w-full px-6 py-4 bg-white border border-gray-100 rounded-2xl text-[14px] font-bold text-gray-900 shadow-sm">1,250</div>
-                                </div>
-                                <div className="space-y-2">
-                                   <p className="text-[9px] font-bold text-gray-300 uppercase tracking-widest ml-1">Power Load</p>
-                                   <div className="w-full px-6 py-4 bg-white border border-gray-100 rounded-2xl text-[14px] font-bold text-gray-900 shadow-sm">400V 64A</div>
-                                </div>
-                             </div>
-                          </div>
-                       </div>
-                       
-                       {/* Benchmark Values */}
-                       <div className="space-y-6 bg-indigo-50/10 -mx-4 px-4 py-2 rounded-3xl border-l-4 border-indigo-200">
-                          <div className="space-y-2">
-                             <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest bg-white border border-gray-100 px-2 py-0.5 rounded w-max flex items-center gap-1.5">
-                                <History className="w-2.5 h-2.5" /> Benchmarked (2025)
-                             </p>
-                             <div className="space-y-6">
-                                <div className="space-y-2">
-                                   <p className="text-[9px] font-bold text-gray-400/40 uppercase tracking-widest ml-1">Past Area</p>
-                                   <div className="w-full px-6 py-4 bg-white/50 border border-indigo-50 rounded-2xl text-[14px] font-bold text-gray-400">{currentMatchModel.parameters.area}</div>
-                                </div>
-                                <div className="space-y-2">
-                                   <p className="text-[9px] font-bold text-gray-400/40 uppercase tracking-widest ml-1">Past Load</p>
-                                   <div className="w-full px-6 py-4 bg-white/50 border border-indigo-50 rounded-2xl text-[14px] font-bold text-gray-400">{currentMatchModel.parameters.load}</div>
-                                </div>
-                             </div>
-                          </div>
-                       </div>
-                    </div>
-                 </div>
+               {/* Workspace Detail Footer */}
+               <div className="p-4 bg-gray-50/30 border-t border-gray-100 flex items-center justify-between">
+                  <p className="text-[10px] font-bold text-gray-400 uppercase tracking-[0.2em]">Infrastructure Analysis Hub • Build 24.1</p>
+                  <div className="flex items-center gap-6">
+                     <span className="flex items-center gap-2 text-[10px] font-bold text-emerald-600 uppercase tracking-widest">
+                        <Activity className="w-3.5 h-3.5" /> Processor Active
+                     </span>
+                     <span className="flex items-center gap-2 text-[10px] font-bold text-indigo-600 uppercase tracking-widest">
+                        <BrainCircuit className="w-3.5 h-3.5" /> Logic Synchronized
+                     </span>
+                  </div>
+               </div>
+            </div>
 
-                 {/* 3. Compact Financial Precision Calculator (EMI Style) */}
-                 <div className="pt-12 border-t border-gray-100">
-                    <div className="bg-white border border-gray-100 rounded-[40px] p-10 shadow-[0_32px_80px_-24px_rgba(99,102,241,0.15)] space-y-10 relative overflow-hidden">
-                       <h3 className="text-sm font-bold text-gray-900 uppercase tracking-widest flex items-center gap-3">
-                          <DollarSign className="w-5 h-5 text-indigo-600" /> Precision Calculator
-                       </h3>
-                       
-                       <div className="flex gap-10 items-start">
-                          {/* Financial Slider */}
-                          <div className="flex-1 space-y-10">
-                             <div className="space-y-5 pt-4">
-                                <div className="flex justify-between items-center pr-2">
-                                   <p className="text-[11px] font-bold text-gray-500 uppercase tracking-widest text-indigo-600">Target Value Adjustment (€)</p>
-                                   <span className="px-4 py-1.5 bg-emerald-50 text-emerald-600 rounded-xl text-base font-bold border border-emerald-100 shadow-sm">€{proposedValue.toLocaleString()}</span>
-                                </div>
-                                <input 
-                                   type="range" min="342300" max="1000000" step="100" value={proposedValue} 
-                                   onChange={(e) => setProposedValue(Number(e.target.value))}
-                                   className="w-full h-2.5 bg-gray-100 rounded-lg appearance-none cursor-pointer accent-indigo-600 hover:accent-indigo-700 transition-all"
-                                />
-                             </div>
-                          </div>
+            {/* Right Column: Compact Fields & Calculator */}
+            <div className="w-[540px] flex-shrink-0 bg-white border-l border-gray-100 flex flex-col overflow-y-auto custom-scrollbar">
+               <div className="p-8 space-y-10">
+                  
+                  {/* 1. Facility Information */}
+                  <div className="space-y-6">
+                     <div className="flex items-center gap-3">
+                        <div className="w-1 bg-indigo-600 h-4 rounded-full" />
+                        <h3 className="text-[11px] font-bold text-gray-900 uppercase tracking-widest">Project Summary</h3>
+                     </div>
+                     
+                     <div className="grid grid-cols-1 gap-5">
+                        <div className="space-y-2">
+                           <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest pl-1">Project Classification</label>
+                           <div className="w-full px-5 py-3.5 bg-gray-50 border border-gray-100 rounded-2xl text-[13px] font-bold text-gray-900 flex justify-between items-center shadow-inner hover:bg-white transition-all cursor-pointer">
+                              <span>ASSEMBLY-OPERATIONS-2026</span>
+                              <ChevronDown className="w-4 h-4 text-gray-400" />
+                           </div>
+                        </div>
+                        
+                        <div className="grid grid-cols-2 gap-5">
+                           <div className="space-y-2">
+                              <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest pl-1">Client</label>
+                              <div className="w-full px-5 py-3.5 bg-white border border-gray-100 rounded-2xl text-[13px] font-bold text-gray-900 shadow-sm">
+                                 TechCorp Group
+                              </div>
+                           </div>
+                           <div className="space-y-2">
+                              <label className="text-[10px] font-bold text-gray-400 uppercase tracking-widest pl-1">Facility Hub</label>
+                              <div className="w-full px-5 py-3.5 bg-white border border-gray-100 rounded-2xl text-[13px] font-bold text-gray-900 shadow-sm">
+                                 Zone B04-A
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
 
-                          {/* Visual Allocation Chart (Doughnut) */}
-                          <div className="w-44 flex flex-col items-center justify-center relative">
-                             <svg viewBox="0 0 100 100" className="w-full h-full -rotate-90">
-                                <circle cx="50" cy="50" r="40" fill="transparent" stroke="#F3F4F6" strokeWidth="12" />
-                                <circle 
-                                   cx="50" cy="50" r="40" fill="transparent" stroke="#6366f1" strokeWidth="12" 
-                                   strokeDasharray={`${Math.max(0, dynamicMargin) * 2.51} 251`}
-                                />
-                             </svg>
-                             <div className="absolute inset-0 flex flex-col items-center justify-center">
-                                <p className="text-[10px] font-bold text-gray-300 uppercase leading-none mb-1">Profit</p>
-                                <p className="text-base font-bold text-gray-900 leading-none">{Math.max(0, dynamicMargin).toFixed(1)}%</p>
-                             </div>
-                          </div>
-                       </div>
+                  {/* 2. Operational Specs (SIDE-BY-SIDE Comparison) */}
+                  <div className="space-y-6 pt-6 border-t border-gray-50">
+                     <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-3">
+                           <div className="w-1 bg-indigo-600 h-4 rounded-full" />
+                           <h3 className="text-[11px] font-bold text-gray-900 uppercase tracking-widest">Comparison Grid</h3>
+                        </div>
+                        <span className="px-2 py-0.5 bg-gray-100 text-gray-500 text-[8px] font-bold rounded uppercase tracking-widest">v {currentMatchModel.id}</span>
+                     </div>
+ 
+                     <div className="grid grid-cols-1 gap-3">
+                        {/* Comparison Field Helper */}
+                        {[
+                          { label: 'Building Area (SQ FT)', current: '115,165', baseline: currentMatchModel.parameters.area },
+                          { label: 'Power Load Capacity', current: '400V 64A', baseline: currentMatchModel.parameters.load },
+                          { label: 'Clear Ceiling Height', current: '38 ft', baseline: currentMatchModel.parameters.height },
+                          { label: 'Floor Load Capacity', current: '55 kN/m²', baseline: currentMatchModel.parameters.floor },
+                          { label: 'Loading Dock Doors', current: '14 Docks', baseline: currentMatchModel.parameters.docks },
+                        ].map((field, i) => (
+                           <div key={i} className="p-3.5 rounded-2xl bg-gray-50/50 border border-gray-100 space-y-2.5">
+                              <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest">{field.label}</p>
+                              <div className="grid grid-cols-2 gap-px bg-gray-100 border border-gray-100 rounded-lg overflow-hidden shadow-sm">
+                                 <div className="bg-white p-2.5">
+                                    <p className="text-[7px] font-bold text-indigo-400 uppercase tracking-widest mb-0.5">Proposed</p>
+                                    <p className="text-[12px] font-bold text-gray-900">{field.current}</p>
+                                 </div>
+                                 <div className="bg-gray-50/50 p-2.5">
+                                    <p className="text-[7px] font-bold text-emerald-400 uppercase tracking-widest mb-0.5">Match</p>
+                                    <p className="text-[12px] font-bold text-gray-400">{field.baseline}</p>
+                                 </div>
+                              </div>
+                           </div>
+                        ))}
+                     </div>
+                  </div>
 
-                       {/* Commercial Output Breakdown */}
-                       <div className="grid grid-cols-2 gap-8 border-t border-gray-50 pt-8">
-                          <div className="space-y-1">
-                             <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Net Base Cost</p>
-                             <p className="text-xl font-bold text-gray-900 tracking-tight">€{Math.round(baseIntelligenceCost).toLocaleString()}</p>
-                          </div>
-                          <div className="space-y-1">
-                             <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Expected Margin</p>
-                             <p className="text-xl font-bold text-emerald-600 tracking-tight">€{Math.round(profitMarginValue).toLocaleString()}</p>
-                          </div>
-                       </div>
+                  {/* 3. Compact Financial Mini Calc */}
+                  <div className="pt-8 border-t border-gray-100">
+                     <div className="bg-white border border-indigo-100 rounded-[32px] p-8 shadow-[0_20px_50px_-12px_rgba(99,102,241,0.1)] space-y-8">
+                        <div className="flex items-center justify-between">
+                           <h3 className="text-[11px] font-bold text-gray-900 uppercase tracking-widest flex items-center gap-2">
+                              <DollarSign className="w-4 h-4 text-indigo-600" /> Commercial Logic
+                           </h3>
+                           <div className="flex flex-col items-end">
+                              <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest leading-none mb-1">Profit</p>
+                              <p className="text-sm font-bold text-emerald-600 leading-none">{Math.max(0, dynamicMargin).toFixed(1)}%</p>
+                           </div>
+                        </div>
+                        
+                        <div className="space-y-6">
+                           <div className="space-y-4">
+                              <div className="flex justify-between items-center">
+                                 <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Proposed Value Adjustment</p>
+                                 <span className="text-sm font-bold text-gray-900">€{proposedValue.toLocaleString()}</span>
+                              </div>
+                              <input 
+                                 type="range" min="342300" max="1000000" step="100" value={proposedValue} 
+                                 onChange={(e) => setProposedValue(Number(e.target.value))}
+                                 className="w-full h-1.5 bg-gray-100 rounded-lg appearance-none cursor-pointer accent-indigo-600 transition-all hover:bg-gray-200"
+                              />
+                           </div>
 
-                       <button 
-                          onClick={() => navigate('/rfqs')}
-                          className="w-full py-5 bg-indigo-600 text-white rounded-[24px] font-bold uppercase tracking-[0.2em] text-[11px] hover:bg-indigo-700 shadow-2xl shadow-indigo-200 transition-all active:scale-95"
-                       >
-                          Create RFP
-                       </button>
-                    </div>
-                 </div>
-              </div>
-           </div>
+                           <div className="grid grid-cols-2 gap-4 py-4 border-y border-gray-50">
+                              <div className="space-y-1">
+                                 <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest">Base Cost</p>
+                                 <p className="text-sm font-bold text-gray-900">€{Math.round(baseIntelligenceCost).toLocaleString()}</p>
+                              </div>
+                              <div className="space-y-1">
+                                 <p className="text-[9px] font-bold text-gray-400 uppercase tracking-widest">Est. Margin</p>
+                                 <p className="text-sm font-bold text-emerald-600">€{Math.round(profitMarginValue).toLocaleString()}</p>
+                              </div>
+                           </div>
+                        </div>
+
+                        <button 
+                           onClick={() => navigate('/rfqs')}
+                           className="w-full py-4 bg-indigo-600 text-white rounded-2xl font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-indigo-700 shadow-lg shadow-indigo-100 transition-all active:scale-95"
+                        >
+                           Initialize RFP
+                        </button>
+                     </div>
+                  </div>
+               </div>
+            </div>
         </div>
       </div>
     );

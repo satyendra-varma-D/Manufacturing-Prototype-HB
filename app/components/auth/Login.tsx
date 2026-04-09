@@ -12,7 +12,7 @@ const HUB_INFO = {
   bom: { id: 'bom', label: 'BOM Based', color: 'text-emerald-600', bg: 'bg-emerald-50', email: 'bom@rfq.ai', pass: 'data-2026' },
   visual: { id: 'visual', label: 'Visual Based', color: 'text-amber-600', bg: 'bg-amber-50', email: 'visual@rfq.ai', pass: 'view-2026' },
   text: { id: 'text', label: 'Text Based', color: 'text-indigo-600', bg: 'bg-indigo-50', email: 'text@rfq.ai', pass: 'mail-2026' },
-  mixed: { id: 'mixed', label: 'Mixed RFQs', color: 'text-purple-600', bg: 'bg-purple-50', email: 'mixed@rfq.ai', pass: 'unified-2026' },
+  mixed: { id: 'mixed', label: 'Mixed RFPs', color: 'text-purple-600', bg: 'bg-purple-50', email: 'mixed@rfq.ai', pass: 'unified-2026' },
 };
 
 export default function Login() {

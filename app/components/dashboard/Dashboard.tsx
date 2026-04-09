@@ -5,7 +5,7 @@ import {
   TrendingUp, TrendingDown, Clock, DollarSign, Target,
   FileText, CheckCircle, AlertCircle, Zap, ShieldCheck, 
   ArrowRight, Users, Activity, ExternalLink, BarChart3,
-  ChevronRight, ArrowUpRight, Filter, Briefcase, Calendar,
+  ChevronRight, ArrowUpRight, Filter, Briefcase, Calendar, Plus,
   LayoutDashboard, ChevronRight as ChevronIcon, Database,
   Image as ImageIcon, Mail, Layers
 } from 'lucide-react';
@@ -56,7 +56,7 @@ const HUB_CONFIG: Record<string, any> = {
   mixed: {
     title: 'Unified System',
     kpis: [
-      { label: 'Total RFQs', value: '45', change: 12, trend: 'up', icon: Briefcase, color: 'text-indigo-600', bg: 'bg-indigo-50' },
+      { label: 'Total RFPs', value: '45', change: 12, trend: 'up', icon: Briefcase, color: 'text-indigo-600', bg: 'bg-indigo-50' },
       { label: 'Active', value: '28', change: 8, trend: 'up', icon: Activity, color: 'text-blue-600', bg: 'bg-blue-50' },
       { label: 'Pending', value: '12', change: -3, trend: 'down', icon: Clock, color: 'text-gray-400', bg: 'bg-gray-50' },
       { label: 'Status', value: '98%', change: 2, trend: 'up', icon: ShieldCheck, color: 'text-emerald-600', bg: 'bg-emerald-50' },
@@ -106,9 +106,9 @@ export default function Dashboard() {
              <button className="flex items-center gap-2 px-5 py-2.5 bg-white border border-gray-200 text-gray-600 rounded-lg text-xs font-semibold hover:bg-gray-50 transition-all shadow-sm">
                <Filter className="w-3.5 h-3.5" /> Filter
              </button>
-             <button className={`flex items-center gap-2 px-6 py-2.5 bg-indigo-600 text-white rounded-lg text-xs font-semibold hover:bg-indigo-700 transition-all shadow-sm`}>
-               <Zap className="w-3.5 h-3.5 fill-current" /> Save RFQ
-             </button>
+             <Link to="/rfqs/new" className={`flex items-center gap-2 px-6 py-2.5 bg-indigo-600 text-white rounded-lg text-xs font-semibold hover:bg-indigo-700 transition-all shadow-sm`}>
+               <Plus className="w-3.5 h-3.5" /> Create RFP
+             </Link>
           </div>
         </div>
 
