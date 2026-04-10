@@ -14,7 +14,6 @@ import CustomerDetail from "./components/customer/CustomerDetail";
 import CustomerForm from "./components/customer/CustomerForm";
 import KnowledgeBaseList from "./components/knowledge/KnowledgeBaseList";
 import KnowledgeBaseDetail from "./components/knowledge/KnowledgeBaseDetail";
-import TaskList from "./components/tasks/TaskList";
 import Reports from "./components/reports/Reports";
 import Settings from "./components/settings/Settings";
 import Profile from "./components/profile/Profile";
@@ -48,7 +47,6 @@ export const router = createBrowserRouter([
       { path: "customers/:id/edit", Component: CustomerForm },
       { path: "knowledge", Component: KnowledgeBaseList },
       { path: "knowledge/:id", Component: KnowledgeBaseDetail },
-      { path: "tasks", Component: TaskList },
       { path: "reports", Component: Reports },
       { path: "settings", Component: Settings },
       { path: "profile", Component: Profile },

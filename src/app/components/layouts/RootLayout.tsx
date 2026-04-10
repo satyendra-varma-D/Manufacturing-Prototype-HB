@@ -5,7 +5,8 @@ import {
   CheckSquare, BarChart3, Settings, Search, Bell, Mail,
   ChevronRight, LogOut, User, Clock, ChevronDown, 
   Briefcase, Layers, Database, ShieldCheck, Zap,
-  Image as ImageIcon
+  Image as ImageIcon,
+  Activity
 } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 
@@ -37,8 +38,7 @@ const navGroups = [
   {
     title: 'Knowledge',
     items: [
-      { name: 'Help Base', path: '/knowledge', icon: BookOpen },
-      { name: 'Tasks', path: '/tasks', icon: CheckSquare },
+      { name: 'Knowledge Base', path: '/knowledge', icon: BookOpen },
       { name: 'Reports', path: '/reports', icon: BarChart3 },
     ]
   },
@@ -82,12 +82,12 @@ export default function RootLayout() {
       <aside className="w-[280px] bg-white border-r border-gray-100 flex flex-col shadow-sm z-50">
         <div className="p-8 pb-10">
            <div className="flex items-center gap-3">
-              <div className={`w-10 h-10 rounded-xl flex items-center justify-center text-white shadow-lg ${brand.color.replace('text-', 'bg-')} shadow-indigo-100`}>
-                 <brand.icon className="w-6 h-6" />
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-indigo-600 shadow-sm border border-indigo-500">
+                 <Activity className="w-5 h-5 text-white" />
               </div>
-              <div>
-                 <h1 className="text-lg font-bold text-gray-900 leading-none">{brand.name}</h1>
-                 <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-1.5">{brand.badge} Access</p>
+              <div className="min-w-0">
+                 <h1 className="text-[14px] font-bold text-gray-900 leading-none mb-1 truncate">HB Manufacturing</h1>
+                 <p className="text-[9px] text-indigo-600 font-bold uppercase tracking-widest">{brand.name}</p>
               </div>
            </div>
         </div>

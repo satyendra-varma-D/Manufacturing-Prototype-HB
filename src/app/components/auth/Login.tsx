@@ -4,7 +4,8 @@ import { useAuth, IntelligenceMode } from '../../contexts/AuthContext';
 import { 
   AlertCircle, Eye, EyeOff, FileText, Database, 
   Image as ImageIcon, Mail, Layers, ChevronRight,
-  ShieldCheck, Globe, Lock, Copy, Check
+  ShieldCheck, Globe, Lock, Copy, Check,
+  Activity
 } from 'lucide-react';
 
 const HUB_INFO = {
@@ -92,9 +93,11 @@ export default function Login() {
         <div className="w-full max-w-[540px] mx-auto">
           
           <div className="mb-12">
-             <div className="flex items-center gap-2 mb-10">
-                <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white shadow-sm font-bold text-lg">H</div>
-                <span className="text-xl font-bold text-indigo-600 tracking-tight">Estimation Hub</span>
+             <div className="flex items-center gap-3 mb-10">
+                <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-200">
+                   <Activity className="w-6 h-6 text-white" />
+                </div>
+                <span className="text-xl font-bold text-gray-900 tracking-tight">HB Manufacturing System</span>
              </div>
 
              <h1 className="text-3xl font-bold text-gray-900 tracking-tight leading-none">Login</h1>
@@ -162,36 +165,28 @@ export default function Login() {
                 {copied && <span className="text-[10px] font-bold text-emerald-500 uppercase tracking-widest animate-pulse">Copied!</span>}
              </div>
              
-             <div className="grid grid-cols-1 gap-2.5 animate-in fade-in slide-in-from-bottom-2 duration-700">
+             <div className="grid grid-cols-5 gap-3 animate-in fade-in slide-in-from-bottom-2 duration-700">
                 {Object.values(HUB_INFO).map((hub) => (
                    <button 
                      key={hub.id}
                      onClick={() => handleQuickAccess(hub)}
-                     className="flex items-center justify-between p-4 bg-white border border-gray-100 rounded-2xl hover:border-indigo-600 hover:shadow-lg hover:shadow-indigo-50 transition-all text-left group"
+                     className="flex flex-col items-center justify-center p-3 bg-white border border-gray-100 rounded-[20px] hover:border-indigo-600 hover:shadow-xl hover:shadow-indigo-500/5 transition-all text-center group aspect-square"
                    >
-                      <div className="flex items-center gap-4">
-                         <div className={`w-10 h-10 rounded-xl ${hub.bg} ${hub.color} flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform`}>
-                            {hub.id === 'drawing' && <FileText className="w-5 h-5" />}
-                            {hub.id === 'bom' && <Database className="w-5 h-5" />}
-                            {hub.id === 'visual' && <ImageIcon className="w-5 h-5" />}
-                            {hub.id === 'text' && <Mail className="w-5 h-5" />}
-                            {hub.id === 'mixed' && <Layers className="w-5 h-5" />}
-                         </div>
-                         <div>
-                            <p className="text-[13px] font-bold text-gray-900 leading-none mb-1">{hub.label}</p>
-                            <p className="text-[11px] text-gray-500 font-medium">User: {hub.email} | Pass: {hub.pass}</p>
-                         </div>
+                      <div className={`w-10 h-10 rounded-xl ${hub.bg} ${hub.color} flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform mb-2 flex-shrink-0`}>
+                         {hub.id === 'drawing' && <FileText className="w-5 h-5" />}
+                         {hub.id === 'bom' && <Database className="w-5 h-5" />}
+                         {hub.id === 'visual' && <ImageIcon className="w-5 h-5" />}
+                         {hub.id === 'text' && <Mail className="w-5 h-5" />}
+                         {hub.id === 'mixed' && <Layers className="w-5 h-5" />}
                       </div>
-                      <div className="p-2 opacity-0 group-hover:opacity-100 transition-opacity bg-indigo-50 rounded-lg">
-                         <Copy className="w-3.5 h-3.5 text-indigo-600" />
-                      </div>
+                      <p className="text-[10px] font-bold text-gray-900 leading-tight uppercase tracking-tight">{hub.label.split(' ')[0]}</p>
                    </button>
                 ))}
              </div>
           </div>
 
           <div className="mt-12 pt-8 flex items-center justify-between opacity-50">
-             <p className="text-[10px] text-gray-300 font-bold uppercase tracking-widest">© 2026 Estimation HUB</p>
+             <p className="text-[10px] text-gray-300 font-bold uppercase tracking-widest">© 2026 Hidden Brains Infotech</p>
              <button className="text-[10px] text-indigo-400 font-bold uppercase tracking-widest">Support</button>
           </div>
         </div>
