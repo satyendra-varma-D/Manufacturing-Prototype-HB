@@ -38,10 +38,10 @@ export default function RFQList() {
            <nav className="flex items-center gap-2 text-[11px] font-medium text-gray-400 uppercase tracking-wider">
               <span>RFP System</span>
               <ChevronRight className="w-3 h-3" />
-              <span className="text-gray-900">Inventory Registry</span>
+              <span className="text-gray-900">RFP Registry</span>
            </nav>
            <div className="space-y-1">
-              <h1 className="text-2xl font-bold text-gray-900 tracking-tight">Request Inventory</h1>
+              <h1 className="text-2xl font-bold text-gray-900 tracking-tight">RFPs</h1>
               <p className="text-[11px] font-bold text-gray-400 uppercase tracking-widest">{filteredRFQs.length} Management Units Active</p>
            </div>
         </div>

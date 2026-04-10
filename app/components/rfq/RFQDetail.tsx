@@ -24,7 +24,7 @@ export default function RFQDetail() {
            <AlertCircle className="w-8 h-8 text-gray-300" />
         </div>
         <h2 className="text-lg font-bold text-gray-900">RFP Not Found</h2>
-        <Link to="/rfqs" className="text-sm font-bold text-indigo-600 mt-4">Return to Inventory</Link>
+        <Link to="/rfqs" className="text-sm font-bold text-indigo-600 mt-4">Return to RFPs</Link>
       </div>
     );
   }
@@ -40,7 +40,7 @@ export default function RFQDetail() {
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 border-b border-gray-100 pb-8">
         <div className="space-y-4">
            <nav className="flex items-center gap-2 text-[11px] font-medium text-gray-400">
-              <Link to="/rfqs" className="hover:text-gray-900 transition-colors uppercase tracking-wider">Inventory</Link>
+              <Link to="/rfqs" className="hover:text-gray-900 transition-colors uppercase tracking-wider">RFPs</Link>
               <ChevronRight className="w-3 h-3" />
               <span className="text-gray-900 uppercase tracking-wider">{rfq.id}</span>
            </nav>
