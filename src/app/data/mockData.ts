@@ -91,6 +91,17 @@ export const mockCustomers: Customer[] = [
     totalValue: 4500000,
     rfqCount: 56,
     createdDate: '2025-02-15',
+  },
+  {
+    id: 'CUST-003',
+    name: 'Mario Rossi',
+    email: 'm.rossi@italy-mfr.it',
+    company: 'Italy Precision MFR',
+    industry: 'Industrial Equipment',
+    status: 'pending',
+    totalValue: 0,
+    rfqCount: 0,
+    createdDate: '2026-04-10',
   }
 ];
 

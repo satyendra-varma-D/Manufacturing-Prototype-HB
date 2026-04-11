@@ -9,7 +9,7 @@ import {
   Maximize2, ZoomIn, ZoomOut, X, Info, TrendingUp,
   Award, Activity, Target, ArrowDownRight, Scale,
   Map, HardHat, ZapOff, Table, Building2, Cpu,
-  ChevronDown, DollarSign, Sparkles, BrainCircuit
+  ChevronDown, DollarSign, Sparkles, BrainCircuit, UserPlus
 } from 'lucide-react';
 import { useState } from 'react';
 import { mockMails } from '../../data/mockMails';
@@ -170,36 +170,92 @@ export default function MailDetail() {
                 </p>
               </div>
 
-              {/* Proper Infrastructure Layouts Grid */}
-              <div className="mt-12 pt-10 border-t border-gray-100">
-                <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 mb-8 flex items-center gap-2 pt-2">
-                   <Layers className="w-4 h-4 text-indigo-400 opacity-60" /> INFRASTRUCTURE LAYOUTS
-                </h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                   {(mail.attachments || []).map((file, idx) => (
-                    <div 
-                      key={idx} 
-                      onClick={() => setIsAnalysisMode(true)}
-                      className="group flex items-center gap-5 p-5 bg-white rounded-2xl border border-gray-100 shadow-sm hover:border-indigo-600 hover:shadow-xl hover:shadow-indigo-500/5 transition-all cursor-pointer active:scale-[0.98]"
-                    >
-                        <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center text-indigo-500 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300 flex-shrink-0">
-                           <FileCode className="w-6 h-6" />
+                {/* Extraction Sources Section (Conditional) */}
+                <div className="mt-12 pt-10 border-t border-gray-100">
+                  {user?.intelligenceMode !== 'text' ? (
+                    mail.attachments && mail.attachments.length > 0 ? (
+                      <>
+                        <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 mb-8 flex items-center gap-2 pt-2">
+                           <Layers className="w-4 h-4 text-indigo-400 opacity-60" /> INFRASTRUCTURE LAYOUTS
+                        </h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                           {mail.attachments.map((file, idx) => (
+                            <div 
+                              key={idx} 
+                              onClick={() => setIsAnalysisMode(true)}
+                              className="group flex items-center gap-5 p-5 bg-white rounded-2xl border border-gray-100 shadow-sm hover:border-indigo-600 hover:shadow-xl hover:shadow-indigo-500/5 transition-all cursor-pointer active:scale-[0.98]"
+                            >
+                                <div className="w-12 h-12 bg-gray-50 rounded-xl flex items-center justify-center text-indigo-500 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300 flex-shrink-0">
+                                   <FileCode className="w-6 h-6" />
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                   <div className="flex items-center gap-2 mb-1.5 ">
+                                      <p className="text-[9px] font-bold text-emerald-500 uppercase tracking-widest leading-none">Ready for Analysis</p>
+                                      <Sparkles className="w-3 h-3 text-emerald-400 animate-pulse" />
+                                   </div>
+                                   <p className="text-sm font-bold text-gray-900 truncate uppercase tracking-tight leading-none group-hover:text-indigo-600 transition-colors">{file}</p>
+                                </div>
+                                <Maximize2 className="w-4.5 h-4.5 text-gray-300 group-hover:text-indigo-600 transition-all" />
+                            </div>
+                          ))}
                         </div>
-                        <div className="flex-1 min-w-0">
-                           <div className="flex items-center gap-2 mb-1.5 ">
-                              <p className="text-[9px] font-bold text-emerald-500 uppercase tracking-widest leading-none">Ready for Analysis</p>
-                              <Sparkles className="w-3 h-3 text-emerald-400 animate-pulse" />
-                           </div>
-                           <p className="text-sm font-bold text-gray-900 truncate uppercase tracking-tight leading-none group-hover:text-indigo-600 transition-colors">{file}</p>
+                      </>
+                    ) : (
+                      <>
+                        <h3 className="text-[10px] font-bold uppercase tracking-[0.3em] text-gray-400 mb-8 flex items-center gap-2 pt-2">
+                           <BrainCircuit className="w-4 h-4 text-indigo-400 opacity-60" /> LINGUISTIC INTELLIGENCE
+                        </h3>
+                        <div 
+                          onClick={() => setIsAnalysisMode(true)}
+                          className="group p-8 bg-gradient-to-br from-white to-gray-50/50 rounded-3xl border border-gray-100 shadow-sm hover:border-indigo-600 hover:shadow-2xl hover:shadow-indigo-500/10 transition-all cursor-pointer relative overflow-hidden"
+                        >
+                            <div className="absolute top-0 right-0 p-6 opacity-5 group-hover:opacity-10 transition-opacity">
+                               <Zap className="w-32 h-32 text-indigo-600" />
+                            </div>
+                            <div className="relative z-10 flex items-center gap-8">
+                               <div className="w-16 h-16 bg-white rounded-2xl border border-gray-100 shadow-sm flex items-center justify-center text-indigo-600 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-500">
+                                  <BrainCircuit className="w-8 h-8" />
+                               </div>
+                               <div className="flex-1">
+                                  <div className="flex items-center gap-2 mb-2">
+                                     <span className="px-2 py-0.5 bg-emerald-50 text-emerald-600 text-[8px] font-bold uppercase tracking-widest rounded-full border border-emerald-100">AI Source Detected</span>
+                                     <Sparkles className="w-3 h-3 text-emerald-400 animate-pulse" />
+                                  </div>
+                                  <h4 className="text-lg font-bold text-gray-900 mb-1 group-hover:text-indigo-600 transition-colors">Semantic Data Extraction</h4>
+                                  <p className="text-xs text-gray-400 font-medium max-w-md">Our intelligence model has identified high-value extraction parameters within the email body text. Ready for linguistic processing.</p>
+                               </div>
+                               <div className="flex flex-col items-center gap-1 px-6 py-3 bg-white rounded-2xl border border-gray-100 group-hover:border-indigo-100 shadow-sm">
+                                  <span className="text-[10px] font-bold text-indigo-600 uppercase tracking-widest">RUN ANALYSIS</span>
+                                  <ChevronRight className="w-4 h-4 text-indigo-400 group-hover:translate-x-1 transition-transform" />
+                                </div>
+                            </div>
                         </div>
-                        <Maximize2 className="w-4.5 h-4.5 text-gray-300 group-hover:text-indigo-600 transition-all" />
+                      </>
+                    )
+                  ) : (
+                    <div className="flex items-center justify-between p-6 bg-indigo-50/30 rounded-3xl border border-indigo-100 border-dashed">
+                       <div className="flex items-center gap-4">
+                          <div className="w-10 h-10 bg-indigo-100 rounded-xl flex items-center justify-center text-indigo-600">
+                             <BrainCircuit className="w-5 h-5" />
+                          </div>
+                          <div>
+                             <p className="text-[10px] font-bold text-indigo-600 uppercase tracking-widest leading-none mb-1">Configuration Ready</p>
+                             <p className="text-xs font-bold text-gray-900">Semantic data points extracted from email body</p>
+                          </div>
+                       </div>
+                       <button 
+                         onClick={() => setIsAnalysisMode(true)}
+                         className="px-8 py-3 bg-indigo-600 text-white rounded-2xl text-[10px] font-bold uppercase tracking-widest hover:bg-indigo-700 shadow-lg shadow-indigo-200 transition-all active:scale-95 flex items-center gap-2"
+                       >
+                          <Sparkles className="w-3.5 h-3.5" /> Configure Extraction
+                       </button>
                     </div>
-                  ))}
+                  )}
                 </div>
               </div>
             </div>
           </div>
-        </div>
+
 
         <div className="lg:col-span-4 space-y-10 animate-in slide-in-from-right duration-700">
           <div className="bg-white rounded-[32px] border border-gray-100 shadow-sm p-10 relative overflow-hidden group">
@@ -248,10 +304,13 @@ export default function MailDetail() {
                    </p>
                 </div>
 
-                {!customerMatch && (
+                {!customerMatch && user?.intelligenceMode !== 'text' && (
                    <div className="pt-6 border-t border-gray-50 mt-4 space-y-3">
-                      <button className="w-full flex items-center justify-center gap-4 py-4.5 bg-indigo-600 text-white rounded-[24px] font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-indigo-700 shadow-lg shadow-indigo-100 transition-all active:scale-95 group">
-                         <Sparkles className="w-4 h-4 text-indigo-200 group-hover:animate-pulse" /> AI Data Extraction
+                      <button 
+                        onClick={() => setIsAnalysisMode(true)}
+                        className="w-full flex items-center justify-center gap-4 py-4.5 bg-indigo-600 text-white rounded-[24px] font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-indigo-700 shadow-lg shadow-indigo-100 transition-all active:scale-95 group"
+                      >
+                         <UserPlus className="w-4 h-4 text-indigo-200" /> Add Customer
                       </button>
                       <button className="w-full flex items-center justify-center gap-4 py-4.5 bg-white border border-gray-200 text-gray-400 rounded-[24px] font-bold uppercase tracking-[0.2em] text-[10px] hover:border-indigo-600 hover:text-indigo-600 transition-all active:scale-95">
                          <Plus className="w-4 h-4" /> Manual Setup

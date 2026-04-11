@@ -14,8 +14,8 @@ export default function QuotationList() {
 
   const filteredQuotations = quotations.filter(quote => {
     const matchesSearch = quote.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         quote.customer.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         quote.id.toLowerCase().includes(searchQuery.toLowerCase());
+      quote.customer.toLowerCase().includes(searchQuery.toLowerCase()) ||
+      quote.id.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesStatus = statusFilter === 'all' || quote.status === statusFilter;
     return matchesSearch && matchesStatus;
   });
@@ -26,9 +26,9 @@ export default function QuotationList() {
     <div className="space-y-6">
       <div className="py-2">
         <nav className="flex items-center gap-2 text-[13px] font-medium text-gray-400">
-           <span>Home</span>
-           <ChevronRight className="w-3.5 h-3.5" />
-           <span className="text-gray-900">Quotations</span>
+          <span>Home</span>
+          <ChevronRight className="w-3.5 h-3.5" />
+          <span className="text-gray-900">Quotations</span>
         </nav>
       </div>
 
