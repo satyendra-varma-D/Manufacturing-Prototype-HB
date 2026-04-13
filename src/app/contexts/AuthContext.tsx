@@ -1,4 +1,4 @@
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useEffect } from 'react';
 
 export type Role = 'admin' | 'manager' | 'user';
 export type IntelligenceMode = 'drawing' | 'bom' | 'visual' | 'text' | 'mixed' | null;
@@ -30,6 +30,15 @@ const mockUsers = [
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [user, setUser] = useState<User | null>(null);
+
+  // Sync theme with user intelligence mode
+  useEffect(() => {
+    if (user?.intelligenceMode) {
+      document.documentElement.setAttribute('data-theme', user.intelligenceMode);
+    } else {
+      document.documentElement.removeAttribute('data-theme');
+    }
+  }, [user]);
 
   const login = (email: string, password: string, mode: IntelligenceMode): boolean => {
     // Treat any credentials as valid if email/password is provided, 

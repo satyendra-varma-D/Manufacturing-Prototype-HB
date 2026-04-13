@@ -1,0 +1,31 @@
+<svg width="800" height="600" viewBox="0 -100 800 700" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect x="-100" y="-180" width="1000" height="960" fill="#ffffff" />
+  
+  <!-- Main Plate (8x5 themed, but scaled to fit) -->
+  <rect x="50" y="100" width="700" height="437.5" rx="50" ry="50" fill="#d1d5db" stroke="#374151" stroke-width="2" />
+  
+  <!-- Bolt Holes (Different Pattern) -->
+  <circle cx="100" cy="150" r="25" fill="#ffffff" stroke="#374151" stroke-width="1.5" />
+  <circle cx="700" cy="150" r="25" fill="#ffffff" stroke="#374151" stroke-width="1.5" />
+  <circle cx="100" cy="487.5" r="25" fill="#ffffff" stroke="#374151" stroke-width="1.5" />
+  <circle cx="700" cy="487.5" r="25" fill="#ffffff" stroke="#374151" stroke-width="1.5" />
+  
+  <!-- Dimension Lines - Width (8.000 in) -->
+  <g stroke="#374151" stroke-width="1.5">
+    <line x1="50" y1="50" x2="750" y2="50" />
+    <line x1="50" y1="40" x2="50" y2="60" />
+    <line x1="750" y1="40" x2="750" y2="60" />
+  </g>
+  <text x="400" y="35" font-family="sans-serif" font-size="28" fill="#374151" text-anchor="middle">8.000 in</text>
+  
+  <!-- Dimension Lines - Height (5.000 in) -->
+  <g stroke="#374151" stroke-width="1.5">
+    <line x1="20" y1="100" x2="20" y2="537.5" />
+    <line x1="10" y1="100" x2="30" y2="100" />
+    <line x1="10" y1="537.5" x2="30" y2="537.5" />
+  </g>
+  <text x="15" y="318" font-family="sans-serif" font-size="28" fill="#374151" text-anchor="middle" transform="rotate(-90 15,318)">5.000 in</text>
+  
+  <text x="400" y="580" font-family="sans-serif" font-size="14" font-weight="bold" fill="#666666" text-anchor="middle">REINFORCED BOLT FLANGE - SPEC: 8x5.00</text>
+</svg>

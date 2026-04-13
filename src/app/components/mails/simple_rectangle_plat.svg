@@ -1,0 +1,35 @@
+<svg width="800" height="600" viewBox="0 -80 800 680" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background -->
+  <rect x="-100" y="-180" width="1000" height="960" fill="#ffffff" />
+  
+  <!-- Main Plate -->
+  <rect x="100" y="100" width="600" height="400" rx="25" ry="25" fill="#b1b1b1" stroke="#333333" stroke-width="2" />
+  
+  <!-- Bolt Holes -->
+  <!-- Top Left -->
+  <circle cx="150" cy="150" r="12.5" fill="#ffffff" stroke="#333333" stroke-width="1.5" />
+  <!-- Top Right -->
+  <circle cx="650" cy="150" r="12.5" fill="#ffffff" stroke="#333333" stroke-width="1.5" />
+  <!-- Bottom Left -->
+  <circle cx="150" cy="450" r="12.5" fill="#ffffff" stroke="#333333" stroke-width="1.5" />
+  <!-- Bottom Right -->
+  <circle cx="650" cy="450" r="12.5" fill="#ffffff" stroke="#333333" stroke-width="1.5" />
+  
+  <!-- Dimension Lines - Width (6.000 in) -->
+  <g stroke="#333333" stroke-width="1.5">
+    <line x1="100" y1="50" x2="700" y2="50" />
+    <line x1="100" y1="40" x2="100" y2="60" />
+    <line x1="700" y1="40" x2="700" y2="60" />
+  </g>
+  <text x="400" y="35" font-family="sans-serif" font-size="28" fill="#333333" text-anchor="middle">6.000 in</text>
+  
+  <!-- Dimension Lines - Height (4.000 in) -->
+  <g stroke="#333333" stroke-width="1.5">
+    <line x1="50" y1="100" x2="50" y2="500" />
+    <line x1="40" y1="100" x2="60" y2="100" />
+    <line x1="40" y1="500" x2="60" y2="500" />
+  </g>
+  <text x="35" y="300" font-family="sans-serif" font-size="28" fill="#333333" text-anchor="middle" transform="rotate(-90 35,300)">4.000 in</text>
+  
+  <text x="400" y="550" font-family="sans-serif" font-size="14" font-weight="bold" fill="#666666" text-anchor="middle">RECTANGLE BOLT FLANGE - SPEC: 6x4.25</text>
+</svg>

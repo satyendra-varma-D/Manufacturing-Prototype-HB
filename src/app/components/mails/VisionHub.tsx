@@ -29,7 +29,7 @@ export default function VisionHub({ onBack, onInitializeRFP }: VisionHubProps) {
           <button onClick={onBack} className="p-2 hover:bg-gray-50 rounded-xl transition-all border border-gray-100"><ArrowLeft className="w-5 h-5 text-gray-400" /></button>
           <div className="h-10 w-px bg-gray-100" />
           <div>
-            <h2 className="text-[13px] font-bold text-orange-600 uppercase tracking-[0.2em]">Vision Intelligence Hub</h2>
+            <h2 className="text-[13px] font-bold text-primary uppercase tracking-[0.2em]">Vision Intelligence Hub</h2>
             <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-1">Equipment Identification • Visual Based</p>
           </div>
         </div>
@@ -47,9 +47,9 @@ export default function VisionHub({ onBack, onInitializeRFP }: VisionHubProps) {
            {/* AI Overlays */}
            <div className="absolute top-20 left-20 space-y-4">
               <div className="px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-xl flex items-center gap-3 animate-in slide-in-from-left duration-500">
-                 <div className="w-2 h-2 rounded-full bg-orange-500 animate-pulse" />
+                 <div className="w-2 h-2 rounded-full bg-primary animate-pulse" />
                  <span className="text-[10px] font-bold text-white uppercase tracking-widest">KUKA-KR-60 IDENTIFIED</span>
-                 <span className="text-[9px] font-bold text-orange-300">92% CONF</span>
+                 <span className="text-[9px] font-bold text-primary/80">92% CONF</span>
               </div>
            </div>
 
@@ -58,7 +58,7 @@ export default function VisionHub({ onBack, onInitializeRFP }: VisionHubProps) {
                 <button 
                   key={idx}
                   onClick={() => setSelectedImage(idx)}
-                  className={`w-20 h-20 rounded-2xl overflow-hidden border-2 transition-all ${selectedImage === idx ? 'border-orange-500 scale-110 shadow-lg shadow-orange-500/20' : 'border-transparent opacity-40 hover:opacity-100'}`}
+                  className={`w-20 h-20 rounded-2xl overflow-hidden border-2 transition-all ${selectedImage === idx ? 'border-primary scale-110 shadow-lg shadow-primary/20' : 'border-transparent opacity-40 hover:opacity-100'}`}
                 >
                   <img src={img.url} className="w-full h-full object-cover" />
                 </button>
@@ -69,15 +69,15 @@ export default function VisionHub({ onBack, onInitializeRFP }: VisionHubProps) {
         <div className="w-[480px] bg-white flex flex-col p-10 space-y-10 shadow-[-40px_0_80px_rgba(0,0,0,0.2)] relative z-20">
            <div className="space-y-6">
               <div className="flex items-center gap-3">
-                 <div className="w-1 bg-orange-600 h-5 rounded-full" />
+                 <div className="w-1 bg-primary h-5 rounded-full" />
                  <h3 className="text-[11px] font-bold text-gray-900 uppercase tracking-widest">Visual Analysis Results</h3>
               </div>
               <p className="text-xl font-bold text-gray-900 leading-tight">{images[selectedImage].title}</p>
               
               <div className="space-y-3">
                  {images[selectedImage].findings.map((f, i) => (
-                    <div key={i} className="flex items-center gap-3 p-4 bg-gray-50 rounded-2xl border border-gray-100 group hover:border-orange-500 transition-colors">
-                       <ShieldCheck className="w-4 h-4 text-orange-500" />
+                    <div key={i} className="flex items-center gap-3 p-4 bg-gray-50 rounded-2xl border border-gray-100 group hover:border-primary transition-colors">
+                       <ShieldCheck className="w-4 h-4 text-primary" />
                        <span className="text-sm font-bold text-gray-700 tracking-tight">{f}</span>
                     </div>
                  ))}
@@ -94,7 +94,7 @@ export default function VisionHub({ onBack, onInitializeRFP }: VisionHubProps) {
               </div>
               <button 
                 onClick={onInitializeRFP}
-                className="w-full py-5 bg-orange-600 text-white rounded-[24px] font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-orange-700 shadow-xl shadow-orange-100 transition-all active:scale-95"
+                className="w-full py-5 bg-primary text-white rounded-[24px] font-bold uppercase tracking-[0.2em] text-[10px] hover:bg-orange-700 shadow-xl shadow-primary/20 transition-all active:scale-95"
               >
                 Validate & Initialize RFP
               </button>
@@ -104,7 +104,7 @@ export default function VisionHub({ onBack, onInitializeRFP }: VisionHubProps) {
 
            <div className="p-6 bg-gray-900 rounded-[32px] space-y-4">
               <div className="flex items-center gap-3">
-                 <BrainCircuit className="w-5 h-5 text-orange-500" />
+                 <BrainCircuit className="w-5 h-5 text-primary" />
                  <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">Vision Core 2.0</p>
               </div>
               <p className="text-[11px] text-gray-500 font-medium leading-relaxed italic">"Models trained on over 2.4M industrial machinery datasets to ensure precision in site audits."</p>

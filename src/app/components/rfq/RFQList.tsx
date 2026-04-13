@@ -17,13 +17,15 @@ export default function RFQList() {
   const [statusFilter, setStatusFilter] = useState<RFQStatus | 'all'>('all');
   const [rfqs] = useState(mockRFQs);
 
-  const filteredRFQs = rfqs.filter(rfq => {
-    const matchesSearch = rfq.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         rfq.customer.toLowerCase().includes(searchQuery.toLowerCase()) ||
-                         rfq.id.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesStatus = statusFilter === 'all' || rfq.status === statusFilter;
-    return matchesSearch && matchesStatus;
-  });
+  const filteredRFQs = rfqs
+    .filter(rfq => {
+      const matchesSearch = rfq.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                           rfq.customer.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                           rfq.id.toLowerCase().includes(searchQuery.toLowerCase());
+      const matchesStatus = statusFilter === 'all' || rfq.status === statusFilter;
+      return matchesSearch && matchesStatus;
+    })
+    .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   const totalPipeline = filteredRFQs.reduce((sum, rfq) => sum + rfq.value, 0);
 
@@ -48,15 +50,15 @@ export default function RFQList() {
 
         <div className="flex items-center gap-4">
            <div className="hidden lg:flex items-center gap-3 px-4 py-2 bg-gray-50 border border-gray-100 rounded-xl">
-               <div className="w-2 h-2 bg-indigo-500 rounded-full" />
+               <div className="w-2 h-2 bg-primary/80 rounded-full" />
                <p className="text-[11px] font-bold text-gray-900 uppercase tracking-widest leading-none">Pipeline: €{totalPipeline.toLocaleString()}</p>
            </div>
            {canCreate && (
              <Link
                to="/rfqs/new"
-               className="px-6 py-2.5 bg-indigo-600 text-white text-[11px] font-bold uppercase tracking-widest rounded-lg hover:bg-indigo-700 shadow-sm transition-all"
+               className="px-6 py-2.5 bg-primary text-white text-[11px] font-bold uppercase tracking-widest rounded-lg hover:bg-primary/90 shadow-sm transition-all"
              >
-               Initialize RFP
+               Create RFP
              </Link>
            )}
         </div>
@@ -89,7 +91,7 @@ export default function RFQList() {
             placeholder="Search Project ID, Name or Client..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-11 pr-4 py-3 bg-white border border-gray-200 rounded-xl text-sm font-medium focus:border-indigo-400 outline-none transition-all shadow-sm"
+            className="w-full pl-11 pr-4 py-3 bg-white border border-gray-200 rounded-xl text-sm font-medium focus:border-primary/40 outline-none transition-all shadow-sm"
           />
         </div>
         <select
@@ -123,7 +125,7 @@ export default function RFQList() {
               {filteredRFQs.map((rfq) => (
                 <tr key={rfq.id} className="group hover:bg-gray-50/30 transition-colors">
                   <td className="px-6 py-5">
-                    <Link to={`/rfqs/${rfq.id}`} className="text-xs font-bold text-indigo-600">
+                    <Link to={`/rfqs/${rfq.id}`} className="text-xs font-bold text-primary">
                        {rfq.id}
                     </Link>
                   </td>
@@ -138,10 +140,10 @@ export default function RFQList() {
                   <td className="px-6 py-5 text-sm font-bold text-gray-900">€{rfq.value.toLocaleString()}</td>
                   <td className="px-6 py-5 text-right whitespace-nowrap">
                     <div className="flex items-center justify-end gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-                      <Link to={`/rfqs/${rfq.id}`} className="p-2 text-gray-300 hover:text-indigo-600 transition-colors">
+                      <Link to={`/rfqs/${rfq.id}`} className="p-2 text-gray-300 hover:text-primary transition-colors">
                         <Eye className="w-4 h-4" />
                       </Link>
-                      <Link to={`/rfqs/${rfq.id}/edit`} className="p-2 text-gray-300 hover:text-indigo-600 transition-colors">
+                      <Link to={`/rfqs/${rfq.id}/edit`} className="p-2 text-gray-300 hover:text-primary transition-colors">
                         <Edit className="w-4 h-4" />
                       </Link>
                     </div>

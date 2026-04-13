@@ -12,11 +12,11 @@ import { useState, useRef, useEffect } from 'react';
 
 // Simplified HUB Branding Mapping
 const HUB_BRANDING: Record<string, any> = {
-  drawing: { name: 'Drawing System', icon: FileText, color: 'text-blue-600', badge: 'Technical' },
-  bom: { name: 'Data System', icon: Database, color: 'text-emerald-600', badge: 'Analytical' },
-  visual: { name: 'Visual System', icon: ImageIcon, color: 'text-amber-600', badge: 'Spatial' },
-  text: { name: 'Message System', icon: Mail, color: 'text-indigo-600', badge: 'Linguistic' },
-  mixed: { name: 'Unified System', icon: ShieldCheck, color: 'text-indigo-600', badge: 'General' }
+  drawing: { name: 'Drawing System', icon: FileText, color: 'text-primary', badge: 'Technical' },
+  bom: { name: 'Data System', icon: Database, color: 'text-primary', badge: 'Analytical' },
+  visual: { name: 'Visual System', icon: ImageIcon, color: 'text-primary', badge: 'Spatial' },
+  text: { name: 'Message System', icon: Mail, color: 'text-primary', badge: 'Linguistic' },
+  mixed: { name: 'Unified System', icon: ShieldCheck, color: 'text-primary', badge: 'General' }
 };
 
 const navGroups = [
@@ -82,12 +82,12 @@ export default function RootLayout() {
       <aside className="w-[280px] bg-white border-r border-gray-100 flex flex-col shadow-sm z-50">
         <div className="p-8 pb-10">
            <div className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-indigo-600 shadow-sm border border-indigo-500">
+              <div className="w-10 h-10 rounded-xl flex items-center justify-center bg-primary shadow-sm border border-primary/20">
                  <Activity className="w-5 h-5 text-white" />
               </div>
               <div className="min-w-0">
                  <h1 className="text-[14px] font-bold text-gray-900 leading-none mb-1 truncate">HB Manufacturing</h1>
-                 <p className="text-[9px] text-indigo-600 font-bold uppercase tracking-widest">{brand.name}</p>
+                 <p className="text-[9px] text-primary font-bold uppercase tracking-widest leading-none">{brand.name}</p>
               </div>
            </div>
         </div>
@@ -101,12 +101,12 @@ export default function RootLayout() {
                     const isActive = location.pathname === item.path || (item.path !== '/' && location.pathname.startsWith(item.path));
                     const Icon = item.icon;
                     return (
-                      <Link key={item.path} to={item.path} className={`flex items-center justify-between px-4 py-3 rounded-xl transition-all group ${isActive ? 'bg-indigo-50 text-indigo-600' : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'}`}>
+                      <Link key={item.path} to={item.path} className={`flex items-center justify-between px-4 py-3 rounded-xl transition-all group ${isActive ? 'bg-secondary text-primary' : 'text-gray-500 hover:bg-gray-50 hover:text-gray-900'}`}>
                          <div className="flex items-center gap-3.5">
-                            <Icon className={`w-4.5 h-4.5 ${isActive ? 'text-indigo-600' : 'text-gray-400 group-hover:text-indigo-600'} transition-colors`} />
+                            <Icon className={`w-4.5 h-4.5 ${isActive ? 'text-primary' : 'text-gray-400 group-hover:text-primary'} transition-colors`} />
                             <span className="text-[14px] font-semibold">{item.name}</span>
                          </div>
-                         {isActive && <div className="w-1.5 h-1.5 rounded-full bg-indigo-600 shadow-sm" />}
+                         {isActive && <div className="w-1.5 h-1.5 rounded-full bg-primary shadow-sm" />}
                       </Link>
                     );
                   })}
@@ -119,12 +119,12 @@ export default function RootLayout() {
         <div className="p-6 border-t border-gray-50">
            <div className="bg-white border border-gray-100 p-4 rounded-2xl shadow-sm hover:shadow-md transition-all">
               <div className="flex items-center gap-3 mb-4">
-                 <div className="w-10 h-10 rounded-xl bg-indigo-50 flex items-center justify-center border border-indigo-100">
-                    <User className="w-5 h-5 text-indigo-600" />
+                 <div className="w-10 h-10 rounded-xl bg-secondary flex items-center justify-center border border-primary/10">
+                    <User className="w-5 h-5 text-primary" />
                  </div>
                  <div className="flex-1 min-w-0">
                     <p className="text-sm font-bold text-gray-900 truncate">{user?.name}</p>
-                    <p className="text-[10px] text-indigo-500 font-bold uppercase tracking-wider">{brand.badge} Access</p>
+                    <p className="text-[10px] text-primary font-bold uppercase tracking-wider">{brand.badge} Access</p>
                  </div>
               </div>
               <button 
@@ -153,7 +153,7 @@ export default function RootLayout() {
                    placeholder={`Search ${brand.name.toLowerCase()}...`}
                    value={searchQuery}
                    onChange={(e) => setSearchQuery(e.target.value)}
-                   className="w-full pl-14 pr-6 py-3.5 bg-[#F8F9FB] border border-transparent rounded-2xl text-[14px] placeholder-gray-400 focus:bg-white focus:border-indigo-400 outline-none transition-all shadow-inner"
+                   className="w-full pl-14 pr-6 py-3.5 bg-[#F8F9FB] border border-transparent rounded-2xl text-[14px] placeholder-gray-400 focus:bg-white focus:border-primary/40 outline-none transition-all shadow-inner"
                  />
               </div>
 
@@ -161,7 +161,7 @@ export default function RootLayout() {
                  <div className="flex items-center gap-2">
                     <button 
                       onClick={() => setIsNotificationsOpen(!isNotificationsOpen)}
-                      className={`relative p-3 rounded-xl transition-all ${isNotificationsOpen ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-100' : 'text-gray-400 hover:bg-gray-50 hover:text-indigo-600'}`}
+                      className={`relative p-3 rounded-xl transition-all ${isNotificationsOpen ? 'bg-primary text-white shadow-lg shadow-primary/20' : 'text-gray-400 hover:bg-gray-50 hover:text-primary'}`}
                     >
                       <Bell className="w-5 h-5" />
                       {notifications.length > 0 && <span className="absolute top-2.5 right-2.5 w-2.5 h-2.5 bg-rose-500 border-2 border-white rounded-full" />}
@@ -170,13 +170,13 @@ export default function RootLayout() {
                       <div className="absolute right-24 top-20 w-[380px] bg-white border border-gray-100 rounded-2xl shadow-2xl overflow-hidden z-50 animate-in fade-in slide-in-from-top-2">
                         <div className="p-6 border-b border-gray-50 flex items-center justify-between">
                            <h3 className="font-bold text-gray-900 text-sm">Notifications</h3>
-                           <span className="text-[10px] font-bold text-indigo-600 uppercase tracking-widest bg-indigo-50 px-2 py-1 rounded-md">Live</span>
+                           <span className="text-[10px] font-bold text-primary uppercase tracking-widest bg-secondary px-2 py-1 rounded-md">Live</span>
                         </div>
                         <div className="divide-y divide-gray-50 max-h-[400px] overflow-y-auto custom-scrollbar">
                            {notifications.map((n) => (
                              <div key={n.id} className="p-6 hover:bg-gray-50 transition-colors cursor-pointer group">
                                 <div className="flex gap-4">
-                                   <div className={`w-10 h-10 rounded-xl bg-gray-50 text-gray-400 flex items-center justify-center group-hover:${brand.color.replace('text-', 'bg-')} group-hover:text-white transition-all shadow-sm`}>
+                                   <div className={`w-10 h-10 rounded-xl bg-gray-50 text-gray-400 flex items-center justify-center group-hover:bg-primary group-hover:text-white transition-all shadow-sm`}>
                                       <Zap className="w-4.5 h-4.5" />
                                    </div>
                                    <div>
@@ -194,11 +194,11 @@ export default function RootLayout() {
                  <div className="h-10 w-px bg-gray-100 mx-2" />
 
                  <Link to="/profile" className="flex items-center gap-3 group">
-                    <div className="w-11 h-11 rounded-2xl bg-gray-50 border border-gray-100 flex items-center justify-center group-hover:border-indigo-400 transition-all overflow-hidden shadow-sm">
-                       <User className="w-5.5 h-5.5 text-gray-400 group-hover:text-indigo-600" />
+                    <div className="w-11 h-11 rounded-2xl bg-gray-50 border border-gray-100 flex items-center justify-center group-hover:border-primary/40 transition-all overflow-hidden shadow-sm">
+                       <User className="w-5.5 h-5.5 text-gray-400 group-hover:text-primary" />
                     </div>
                     <div className="text-left hidden xl:block">
-                       <p className="text-sm font-bold text-gray-900 leading-none mb-1 group-hover:text-indigo-600 transition-colors">{user?.name}</p>
+                       <p className="text-sm font-bold text-gray-900 leading-none mb-1 group-hover:text-primary transition-colors">{user?.name}</p>
                        <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest leading-none">{brand.badge} Access</p>
                     </div>
                  </Link>

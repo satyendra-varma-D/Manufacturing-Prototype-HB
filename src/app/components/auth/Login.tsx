@@ -22,6 +22,7 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [copied, setCopied] = useState<string | null>(null);
+  const [currentMode, setCurrentMode] = useState<IntelligenceMode>('mixed');
   
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -29,6 +30,9 @@ export default function Login() {
   const handleQuickAccess = (hub: any) => {
     setEmail(hub.email);
     setPassword(hub.pass);
+    setCurrentMode(hub.id);
+    // Apply immediate theme preview
+    document.documentElement.setAttribute('data-theme', hub.id);
     handleCopy(hub.email);
   };
 
@@ -42,13 +46,7 @@ export default function Login() {
     e.preventDefault();
     setError('');
 
-    let mode: IntelligenceMode = 'mixed';
-    if (email.includes('drawing')) mode = 'drawing';
-    else if (email.includes('bom')) mode = 'bom';
-    else if (email.includes('visual')) mode = 'visual';
-    else if (email.includes('text')) mode = 'text';
-
-    const success = login(email, password, mode);
+    const success = login(email, password, currentMode);
     if (success) {
        navigate('/');
     } else {
@@ -57,15 +55,15 @@ export default function Login() {
   };
 
   return (
-    <div className="min-h-screen flex bg-white font-sans selection:bg-indigo-100 selection:text-indigo-600 overflow-hidden">
+    <div className="min-h-screen flex bg-white font-sans selection:bg-primary/20 selection:text-primary overflow-hidden transition-colors duration-500">
       
       {/* 1. Left Side Visual */}
-      <div className="hidden lg:flex lg:w-1/2 relative bg-indigo-600 overflow-hidden group">
+      <div className="hidden lg:flex lg:w-1/2 relative bg-primary overflow-hidden group transition-colors duration-500">
          <div 
            className="absolute inset-0 bg-cover bg-center transition-transform duration-1000 group-hover:scale-105"
            style={{ backgroundImage: 'url("/modern_manufacturing_unit_login_bg_1775635831057.png")' }}
          >
-           <div className="absolute inset-0 bg-indigo-600/60 backdrop-blur-[1px]" />
+           <div className="absolute inset-0 bg-primary/60 backdrop-blur-[1px] transition-colors duration-500" />
          </div>
 
          <div className="relative z-10 w-full flex flex-col justify-center px-16 xl:px-24">
@@ -76,7 +74,7 @@ export default function Login() {
                Let's make every day<br />
                Meaningful together.
             </h2>
-            <p className="mt-4 text-indigo-100/80 text-sm font-medium tracking-wide">
+            <p className="mt-4 text-white/80 text-sm font-medium tracking-wide">
                Building intelligent tools for easy manufacturing workflows.
             </p>
          </div>
@@ -93,8 +91,8 @@ export default function Login() {
         <div className="w-full max-w-[540px] mx-auto">
           
           <div className="mb-12">
-             <div className="flex items-center gap-3 mb-10">
-                <div className="w-10 h-10 bg-indigo-600 rounded-xl flex items-center justify-center shadow-lg shadow-indigo-200">
+             <div className="flex items-center gap-3 mb-10 transition-all duration-300">
+                <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-lg shadow-primary/20 transition-all duration-500">
                    <Activity className="w-6 h-6 text-white" />
                 </div>
                 <span className="text-xl font-bold text-gray-900 tracking-tight">HB Manufacturing System</span>
@@ -114,7 +112,7 @@ export default function Login() {
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  className="w-full px-6 py-4 bg-gray-50 border border-transparent rounded-2xl focus:bg-white focus:border-indigo-400 outline-none transition-all font-semibold text-gray-900 text-sm shadow-inner"
+                  className="w-full px-6 py-4 bg-gray-50 border border-transparent rounded-2xl focus:bg-white focus:border-primary/40 outline-none transition-all font-semibold text-gray-900 text-sm shadow-inner"
                   placeholder="drawing@rfq.ai"
                   required
                 />
@@ -129,14 +127,14 @@ export default function Login() {
                      type={showPassword ? 'text' : 'password'}
                      value={password}
                      onChange={(e) => setPassword(e.target.value)}
-                     className="w-full px-6 py-4 bg-gray-50 border border-transparent rounded-2xl focus:bg-white focus:border-indigo-400 outline-none transition-all font-semibold text-gray-900 text-sm shadow-inner"
+                     className="w-full px-6 py-4 bg-gray-50 border border-transparent rounded-2xl focus:bg-white focus:border-primary/40 outline-none transition-all font-semibold text-gray-900 text-sm shadow-inner"
                      placeholder="••••••••"
                      required
                    />
                    <button 
                       type="button" 
                       onClick={() => setShowPassword(!showPassword)}
-                      className="absolute right-6 top-1/2 -translate-y-1/2 text-gray-300 hover:text-indigo-600 transition-all duration-300"
+                      className="absolute right-6 top-1/2 -translate-y-1/2 text-gray-300 hover:text-primary transition-all duration-300"
                    >
                       {showPassword ? <EyeOff className="w-4 h-4" /> : <Eye className="w-4 h-4" />}
                    </button>
@@ -152,7 +150,7 @@ export default function Login() {
 
              <button
                 type="submit"
-                className="w-full h-16 bg-indigo-600 text-white font-bold rounded-2xl text-[12px] uppercase tracking-widest shadow-xl shadow-indigo-100 hover:bg-indigo-700 active:scale-95 transition-all flex items-center justify-center gap-3"
+                className="w-full h-16 bg-primary text-white font-bold rounded-2xl text-[12px] uppercase tracking-widest shadow-xl shadow-primary/20 hover:bg-primary/90 active:scale-95 transition-all duration-500 flex items-center justify-center gap-3"
              >
                 Login <ChevronRight className="w-4 h-4" />
              </button>
@@ -170,7 +168,7 @@ export default function Login() {
                    <button 
                      key={hub.id}
                      onClick={() => handleQuickAccess(hub)}
-                     className="flex flex-col items-center justify-center p-3 bg-white border border-gray-100 rounded-[20px] hover:border-indigo-600 hover:shadow-xl hover:shadow-indigo-500/5 transition-all text-center group aspect-square"
+                     className={`flex flex-col items-center justify-center p-3 bg-white border rounded-[20px] transition-all text-center group aspect-square ${currentMode === hub.id ? 'border-primary shadow-xl shadow-primary/5 ring-1 ring-primary/20' : 'border-gray-100 hover:border-primary'}`}
                    >
                       <div className={`w-10 h-10 rounded-xl ${hub.bg} ${hub.color} flex items-center justify-center shadow-sm group-hover:scale-110 transition-transform mb-2 flex-shrink-0`}>
                          {hub.id === 'drawing' && <FileText className="w-5 h-5" />}
@@ -179,7 +177,7 @@ export default function Login() {
                          {hub.id === 'text' && <Mail className="w-5 h-5" />}
                          {hub.id === 'mixed' && <Layers className="w-5 h-5" />}
                       </div>
-                      <p className="text-[10px] font-bold text-gray-900 leading-tight uppercase tracking-tight">{hub.label.split(' ')[0]}</p>
+                      <p className={`text-[10px] font-bold leading-tight uppercase tracking-tight ${currentMode === hub.id ? 'text-primary' : 'text-gray-900'}`}>{hub.label.split(' ')[0]}</p>
                    </button>
                 ))}
              </div>
@@ -187,7 +185,7 @@ export default function Login() {
 
           <div className="mt-12 pt-8 flex items-center justify-between opacity-50">
              <p className="text-[10px] text-gray-300 font-bold uppercase tracking-widest">© 2026 Hidden Brains Infotech</p>
-             <button className="text-[10px] text-indigo-400 font-bold uppercase tracking-widest">Support</button>
+             <button className="text-[10px] text-primary font-bold uppercase tracking-widest">Support</button>
           </div>
         </div>
       </div>

@@ -28,7 +28,7 @@ export default function CustomerList() {
         {canCreate && (
           <Link
             to="/customers/new"
-            className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700"
+            className="flex items-center gap-2 px-6 py-2.5 bg-primary text-white rounded-xl text-xs font-bold uppercase tracking-widest hover:bg-primary/90 transition-all shadow-lg shadow-primary/20 active:scale-95"
           >
             <Plus className="w-4 h-4" />
             New Customer
@@ -45,7 +45,7 @@ export default function CustomerList() {
             placeholder="Search by name, company, or email..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+            className="w-full pl-10 pr-4 py-3 bg-white border border-gray-200 rounded-xl text-sm font-bold text-gray-900 focus:ring-2 focus:ring-primary/40 focus:border-transparent transition-all outline-none"
           />
         </div>
       </div>
@@ -56,11 +56,11 @@ export default function CustomerList() {
           <Link
             key={customer.id}
             to={`/customers/${customer.id}`}
-            className="bg-white rounded-lg border border-gray-200 p-6 hover:border-indigo-300 hover:shadow-md transition-all"
+            className="bg-white rounded-xl border border-gray-200 p-6 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/10 transition-all group"
           >
             <div className="flex items-start justify-between mb-4">
-              <div className="w-12 h-12 rounded-full bg-indigo-100 flex items-center justify-center">
-                <Users className="w-6 h-6 text-indigo-600" />
+              <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center border-2 border-primary/10">
+                <Users className="w-6 h-6 text-primary" />
               </div>
               <StatusBadge status={customer.status} />
             </div>

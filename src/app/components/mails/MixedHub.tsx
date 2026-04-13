@@ -7,10 +7,10 @@ interface MixedHubProps {
 
 export default function MixedHub({ onBack, onInitializeRFP }: MixedHubProps) {
   const sources = [
-    { type: 'Drawing', icon: Box, status: 'Extracted', items: 12, color: 'text-indigo-600', bg: 'bg-indigo-50' },
-    { type: 'BOM', icon: Table, status: 'Verified', items: 45, color: 'text-emerald-600', bg: 'bg-emerald-50' },
+    { type: 'Drawing', icon: Box, status: 'Extracted', items: 12, color: 'text-primary', bg: 'bg-secondary' },
+    { type: 'BOM', icon: Table, status: 'Verified', items: 45, color: 'text-primary', bg: 'bg-secondary' },
     { type: 'Vision', icon: Image, status: 'Pending', items: 5, color: 'text-orange-600', bg: 'bg-orange-50' },
-    { type: 'Text', icon: FileText, status: 'Extracted', items: 8, color: 'text-purple-600', bg: 'bg-purple-50' },
+    { type: 'Text', icon: FileText, status: 'Extracted', items: 8, color: 'text-primary', bg: 'bg-secondary' },
   ];
 
   return (
@@ -29,7 +29,7 @@ export default function MixedHub({ onBack, onInitializeRFP }: MixedHubProps) {
       <div className="flex-1 overflow-y-auto bg-gray-50/50 p-10 custom-scrollbar">
          <div className="max-w-[1240px] mx-auto space-y-10">
             <div className="flex items-center gap-4">
-               <Layers className="w-8 h-8 text-indigo-600" />
+               <Layers className="w-8 h-8 text-primary" />
                <div>
                   <h1 className="text-3xl font-bold text-gray-900 tracking-tight">Aggregated RFP Insights</h1>
                   <p className="text-gray-500 font-medium">Analyzing multi-source data across 4 distinct domains.</p>
@@ -59,13 +59,13 @@ export default function MixedHub({ onBack, onInitializeRFP }: MixedHubProps) {
                   <div className="bg-white rounded-[40px] border border-gray-100 shadow-sm overflow-hidden p-10 space-y-8">
                      <div className="flex items-center justify-between">
                         <div className="flex items-center gap-3">
-                           <div className="w-1 bg-indigo-600 h-5 rounded-full" />
+                           <div className="w-1 bg-primary h-5 rounded-full" />
                            <h3 className="text-[11px] font-bold text-gray-900 uppercase tracking-widest">Unified Perspective</h3>
                         </div>
                      </div>
                      <div className="h-[400px] bg-gray-50 rounded-[32px] flex items-center justify-center border-2 border-dashed border-gray-100">
                         <div className="text-center space-y-4">
-                           <div className="w-20 h-20 bg-white rounded-full shadow-sm mx-auto flex items-center justify-center text-indigo-200">
+                           <div className="w-20 h-20 bg-white rounded-full shadow-sm mx-auto flex items-center justify-center text-primary/30">
                               <BrainCircuit className="w-10 h-10" />
                            </div>
                            <p className="text-sm font-bold text-gray-900 uppercase tracking-widest">AI Synthesis Engine</p>

@@ -42,9 +42,9 @@ export default function Reports() {
             <option value="ytd">Year to Date</option>
             <option value="custom">Custom Range</option>
           </select>
-          <button className="flex items-center gap-2 px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">
+          <button className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary/90 transition-all font-bold text-xs shadow-sm">
             <Download className="w-4 h-4" />
-            Export
+            Export Data
           </button>
         </div>
       </div>
@@ -52,17 +52,17 @@ export default function Reports() {
       {/* Key Metrics */}
       <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         {[
-          { label: 'Total RFPs', value: '137', icon: TrendingUp, color: 'blue' },
-          { label: 'Win Rate', value: '73.2%', icon: Target, color: 'green' },
-          { label: 'Revenue', value: '$10.9M', icon: DollarSign, color: 'indigo' },
-          { label: 'Avg Deal Size', value: '$134K', icon: Calendar, color: 'purple' },
+          { label: 'Total RFPs', value: '137', icon: TrendingUp, color: 'primary' },
+          { label: 'Win Rate', value: '73.2%', icon: Target, color: 'emerald' },
+          { label: 'Total Revenue', value: '$10.9M', icon: DollarSign, color: 'primary' },
+          { label: 'Avg Deal Size', value: '$134K', icon: Calendar, color: 'primary' },
         ].map((metric) => {
           const Icon = metric.icon;
           return (
             <div key={metric.label} className="bg-white rounded-lg border border-gray-200 p-5">
               <div className="flex items-center justify-between mb-2">
-                <p className="text-sm text-gray-600">{metric.label}</p>
-                <Icon className={`w-5 h-5 text-${metric.color}-600`} />
+                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest">{metric.label}</p>
+                <Icon className={`w-5 h-5 ${metric.color === 'primary' ? 'text-primary' : 'text-emerald-500'}`} />
               </div>
               <p className="text-2xl font-bold text-gray-900">{metric.value}</p>
             </div>
@@ -82,7 +82,7 @@ export default function Reports() {
               <YAxis />
               <Tooltip />
               <Legend />
-              <Line type="monotone" dataKey="revenue" stroke="#6366f1" name="Revenue ($)" strokeWidth={2} />
+              <Line type="monotone" dataKey="revenue" stroke="var(--primary)" name="Revenue ($)" strokeWidth={3} dot={{ r: 4, fill: 'var(--primary)' }} />
             </LineChart>
           </ResponsiveContainer>
         </div>
@@ -97,9 +97,9 @@ export default function Reports() {
               <YAxis />
               <Tooltip />
               <Legend />
-              <Bar dataKey="rfqs" fill="#6366f1" name="RFPs" />
-              <Bar dataKey="quotations" fill="#10b981" name="Quotations" />
-              <Bar dataKey="won" fill="#3b82f6" name="Won" />
+              <Bar dataKey="rfqs" fill="var(--primary)" name="RFPs" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="quotations" fill="var(--primary)" opacity={0.6} name="Quotations" radius={[4, 4, 0, 0]} />
+              <Bar dataKey="won" fill="#10b981" name="Won" radius={[4, 4, 0, 0]} />
             </BarChart>
           </ResponsiveContainer>
         </div>

@@ -8,10 +8,13 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: #030213;
-  --primary-foreground: oklch(1 0 0);
-  --secondary: oklch(0.95 0.0058 264.53);
-  --secondary-foreground: #030213;
+  
+  /* Default Branding (Text/Indigo) */
+  --primary: #4f46e5;
+  --primary-foreground: #ffffff;
+  --secondary: #f5f3ff;
+  --secondary-foreground: #4f46e5;
+  
   --muted: #ececf0;
   --muted-foreground: #717182;
   --accent: #e9ebef;
@@ -33,12 +36,43 @@
   --radius: 0.625rem;
   --sidebar: oklch(0.985 0 0);
   --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: #030213;
-  --sidebar-primary-foreground: oklch(0.985 0 0);
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: #ffffff;
   --sidebar-accent: oklch(0.97 0 0);
   --sidebar-accent-foreground: oklch(0.205 0 0);
   --sidebar-border: oklch(0.922 0 0);
   --sidebar-ring: oklch(0.708 0 0);
+}
+
+/* Intelligence Mode Overrides */
+[data-theme='drawing'] {
+  --primary: #2563eb;
+  --secondary: #eff6ff;
+  --secondary-foreground: #2563eb;
+}
+
+[data-theme='bom'] {
+  --primary: #10b981;
+  --secondary: #ecfdf5;
+  --secondary-foreground: #10b981;
+}
+
+[data-theme='visual'] {
+  --primary: #f59e0b;
+  --secondary: #fffbeb;
+  --secondary-foreground: #f59e0b;
+}
+
+[data-theme='text'] {
+  --primary: #4f46e5;
+  --secondary: #f5f3ff;
+  --secondary-foreground: #4f46e5;
+}
+
+[data-theme='mixed'] {
+  --primary: #9333ea;
+  --secondary: #faf5ff;
+  --secondary-foreground: #9333ea;
 }
 
 .dark {
@@ -79,16 +113,16 @@
 }
 
 @theme inline {
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
   --color-popover: var(--popover);
   --color-popover-foreground: var(--popover-foreground);
-  --color-primary: var(--primary);
-  --color-primary-foreground: var(--primary-foreground);
-  --color-secondary: var(--secondary);
-  --color-secondary-foreground: var(--secondary-foreground);
   --color-muted: var(--muted);
   --color-muted-foreground: var(--muted-foreground);
   --color-accent: var(--accent);

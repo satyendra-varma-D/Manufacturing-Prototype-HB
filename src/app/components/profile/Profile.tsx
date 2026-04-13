@@ -20,40 +20,40 @@ export default function Profile() {
 
             <div className="space-y-6">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5 ml-1">
                   Full Name
                 </label>
                 <input
                   type="text"
                   defaultValue={user.name}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl font-bold text-gray-900 focus:ring-2 focus:ring-primary/40 focus:border-transparent outline-none transition-all"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5 ml-1">
                   Email
                 </label>
                 <input
                   type="email"
                   defaultValue={user.email}
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-transparent"
+                  className="w-full px-4 py-3 bg-white border border-gray-200 rounded-xl font-bold text-gray-900 focus:ring-2 focus:ring-primary/40 focus:border-transparent outline-none transition-all"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-[10px] font-bold text-gray-400 uppercase tracking-widest mb-1.5 ml-1">
                   Role
                 </label>
                 <input
                   type="text"
                   value={user.role.charAt(0).toUpperCase() + user.role.slice(1)}
                   disabled
-                  className="w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 text-gray-600 cursor-not-allowed"
+                  className="w-full px-4 py-3 bg-gray-50 border border-transparent rounded-xl text-sm font-bold text-gray-400 cursor-not-allowed"
                 />
               </div>
 
-              <button className="px-6 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700">
+              <button className="px-8 py-3 bg-primary text-white rounded-xl font-bold hover:bg-primary/90 shadow-lg shadow-primary/20 transition-all active:scale-95 text-xs uppercase tracking-widest">
                 Save Changes
               </button>
             </div>
@@ -61,12 +61,12 @@ export default function Profile() {
         </div>
 
         <div className="space-y-6">
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <div className="w-20 h-20 rounded-full bg-indigo-100 flex items-center justify-center mx-auto mb-4">
-              <User className="w-10 h-10 text-indigo-600" />
+          <div className="bg-white rounded-xl border border-gray-200 p-8 shadow-sm">
+            <div className="w-20 h-20 rounded-full bg-secondary flex items-center justify-center mx-auto mb-4 border-2 border-primary/10 shadow-inner">
+              <User className="w-10 h-10 text-primary" />
             </div>
-            <h3 className="text-center font-semibold text-gray-900">{user.name}</h3>
-            <p className="text-center text-sm text-gray-600 mt-1 capitalize">{user.role}</p>
+            <h3 className="text-center font-bold text-gray-900">{user.name}</h3>
+            <p className="text-center text-[10px] text-primary font-bold uppercase tracking-widest mt-2">{user.role}</p>
           </div>
 
           <div className="bg-white rounded-lg border border-gray-200 p-6">

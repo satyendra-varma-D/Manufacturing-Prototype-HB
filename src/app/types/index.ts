@@ -22,7 +22,17 @@ export interface RFQ {
     deadline?: string;
   };
   similarJobs?: string[];
+  communicationHistory?: CommunicationItem[];
   comments?: Comment[];
+}
+
+export interface CommunicationItem {
+  id: string;
+  type: 'email' | 'discussion' | 'transcript';
+  sender: string;
+  content: string;
+  date: string;
+  isAiInsight?: boolean;
 }
 
 export interface Quotation {
@@ -79,17 +89,39 @@ export interface Customer {
   createdDate: string;
 }
 
+export type KnowledgeItemType = 'Drawing' | 'Part' | 'Facility' | 'Process' | 'General';
+export type AssociatedFileType = 'layout' | 'discussion' | 'meeting_notes' | 'email_thread' | 'report';
+
+export interface AssociatedFile {
+  id: string;
+  type: AssociatedFileType;
+  name: string;
+  url?: string;
+  date?: string;
+}
+
 export interface KnowledgeItem {
   id: string;
   title: string;
   description: string;
-  category: string;
+  category: string; // The UI category
+  type: KnowledgeItemType;
   customer?: string;
   value: number;
   completedDate: string;
   tags: string[];
   bom?: BOMItem[];
-  documents?: string[];
+  documents?: string[]; // Legacy field for simplicity
+  associatedFiles?: AssociatedFile[];
+  revision?: string;
+  material?: string;
+  process?: string;
+  approver?: string;
+  dimensions?: {
+    width: string;
+    height: string;
+    depth?: string;
+  };
 }
 
 export interface Task {

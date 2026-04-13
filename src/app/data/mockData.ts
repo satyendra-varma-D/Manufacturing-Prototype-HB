@@ -2,6 +2,35 @@ import { RFQ, Quotation, Customer, KnowledgeItem, Task } from '../types';
 
 export const mockRFQs: RFQ[] = [
   {
+    id: 'RFQ-2026-004',
+    name: 'Industrial Bolt Flange - Batch 2026',
+    customer: 'TechCorp Industries',
+    customerId: 'CUST-001',
+    date: '2026-04-13',
+    status: 'under_review',
+    owner: 'Standard User',
+    ownerId: '3',
+    value: 485000,
+    confidenceScore: 0.98,
+    version: 1,
+    source: 'email',
+    description: 'Precision manufacturing of industrial bolt flanges. Specs: 6.000" x 4.000" plate with 4x bolt hole pattern. Corner radius 0.25". Material: Reinforced Industrial Grade.',
+    documents: ['simple_rectangle_plat.svg'],
+    extractedData: {
+      items: [
+        { id: '1', partNumber: 'BF-6425', description: 'Rectangle Bolt Flange (6x4)', quantity: 1500, unitPrice: 323, totalPrice: 485000, confidenceScore: 0.99 },
+      ],
+      requirements: ['Spec: 6.000 x 4.000 in', 'Corner Radius: 0.25 in', 'Bolt Hole: 0.25 in'],
+      deadline: '2026-05-15',
+    },
+    similarJobs: ['KB-2025-045'],
+    communicationHistory: [
+      { id: 'C1', type: 'email', sender: 'Sarah (Procurement)', content: 'We need high-precision CNC finish on all 4x bolt hole patterns. Reference Munich Branch 03 historical baseline.', date: '2026-04-12' },
+      { id: 'C2', type: 'transcript', sender: 'AI Insight', content: 'Identified material gap. Historical reference KB-2025-045 suggests SS316L for this flange type.', date: '2026-04-13', isAiInsight: true },
+      { id: 'C3', type: 'discussion', sender: 'Internal Eng', content: 'Confirmed. Aligning CAD with standard plate offsets from Rev C.', date: '2026-04-13' }
+    ]
+  },
+  {
     id: 'RFQ-2026-001',
     name: 'Building 04 Facility Expansion',
     customer: 'TechCorp Industries',
@@ -26,6 +55,10 @@ export const mockRFQs: RFQ[] = [
       deadline: '2026-06-30',
     },
     similarJobs: ['KB-2025-045'],
+    communicationHistory: [
+      { id: 'C4', type: 'email', sender: 'John (Facilities)', content: 'Zone A must handle 50kN/m2 load bearing.', date: '2026-04-04' },
+      { id: 'C5', type: 'transcript', sender: 'AI Insight', content: 'Power node specs (PN-400) automatically mapped from Infrastructure KB-2024-312.', date: '2026-04-05', isAiInsight: true }
+    ]
   },
   {
     id: 'RFQ-2026-002',
@@ -108,13 +141,60 @@ export const mockCustomers: Customer[] = [
 export const mockKnowledgeBase: KnowledgeItem[] = [
   {
     id: 'KB-2025-045',
-    title: 'Facility 03 Extension - Munich Hub',
-    description: 'Complete floor layout and power distribution for precision assembly line.',
+    title: 'Munich Hub - Industrial Flange Assembly',
+    description: 'Bespoke flange assembly for high-pressure industrial conduits. Includes full structural layout and material certifications.',
     category: 'Facility Management',
+    type: 'Drawing',
     customer: 'TechCorp Industries',
     value: 420000,
     completedDate: '2025-11-20',
-    tags: ['floor plan', 'infrastructure', 'power distribution'],
+    tags: ['flange', 'high-pressure', 'munich-hub'],
+    revision: 'Rev C',
+    material: 'SS316L Stainless Steel',
+    process: 'CNC Precision Milling',
+    approver: 'Dr. Engineering',
+    dimensions: { width: '12.5 in', height: '12.5 in', depth: '4.2 in' },
+    associatedFiles: [
+      { id: 'F1', type: 'layout', name: 'flange_structural_v3.pdf', date: '2025-11-15' },
+      { id: 'F2', type: 'email_thread', name: 'Clarification on Tolerance.eml', date: '2025-11-10' },
+      { id: 'F3', type: 'meeting_notes', name: 'Design Review Munich.docx', date: '2025-11-12' },
+      { id: 'F4', type: 'discussion', name: 'Internal Slack Export #engineering', date: '2025-11-18' }
+    ]
+  },
+  {
+    id: 'KB-2026-012',
+    title: 'Precision Bolt Plate (Model 4X)',
+    description: 'Standardized mounting plate with 4-hole precision pattern for robotic arms.',
+    category: 'Logistics',
+    type: 'Part',
+    customer: 'Global Manufacturing Corp',
+    value: 125000,
+    completedDate: '2026-01-15',
+    tags: ['mounting-plate', 'robotics', 'hardened-steel'],
+    revision: 'Rev A',
+    material: 'Hardened Steel S45C',
+    process: 'Laser Cutting + Surface Grinding',
+    approver: 'Sarah Engineer',
+    dimensions: { width: '8.0 in', height: '5.0 in', depth: '0.25 in' },
+    associatedFiles: [
+      { id: 'F5', type: 'layout', name: 'bolt_plate_blueprint.svg', date: '2026-01-10' },
+      { id: 'F6', type: 'email_thread', name: 'Material Spec Confirmation.eml', date: '2026-01-12' }
+    ]
+  },
+  {
+    id: 'KB-2024-312',
+    title: 'Logistics Project X1 - Warehouse Alpha',
+    description: 'Complete floor plan extraction for the robotic sorting facility in Warehouse Alpha.',
+    category: 'Facility Management',
+    type: 'Facility',
+    customer: 'Italy Precision MFR',
+    value: 850000,
+    completedDate: '2024-09-05',
+    tags: ['logistics', 'warehouse', 'automation'],
+    associatedFiles: [
+      { id: 'F7', type: 'layout', name: 'warehouse_alpha_floorplan.pdf', date: '2024-08-30' },
+      { id: 'F8', type: 'meeting_notes', name: 'Site Visit Report.pdf', date: '2024-08-25' }
+    ]
   }
 ];
 

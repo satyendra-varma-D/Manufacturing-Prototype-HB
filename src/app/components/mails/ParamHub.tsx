@@ -54,12 +54,12 @@ export default function ParamHub({ onBack, mailContent, onInitializeRFP }: Param
             onClick={onBack} 
             className="group flex items-center gap-3 px-4 py-2 hover:bg-gray-50 rounded-xl transition-all border border-gray-100 shadow-sm active:scale-95"
           >
-            <ArrowLeft className="w-5 h-5 text-gray-400 group-hover:text-indigo-600 transition-colors" />
+            <ArrowLeft className="w-5 h-5 text-gray-400 group-hover:text-primary transition-colors" />
             <span className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Back to Mail</span>
           </button>
           <div className="h-10 w-px bg-gray-100" />
           <div>
-            <h2 className="text-[14px] font-black text-indigo-600 uppercase tracking-[0.3em]">
+            <h2 className="text-[14px] font-black text-primary uppercase tracking-[0.3em]">
                Linguistic Intelligence Hub
             </h2>
             <p className="text-[10px] text-gray-400 font-bold uppercase tracking-widest mt-1">
@@ -83,10 +83,10 @@ export default function ParamHub({ onBack, mailContent, onInitializeRFP }: Param
                <div className="p-12 space-y-12">
                   <div className="flex items-center justify-between border-b border-gray-50 pb-8">
                     <div className="flex items-center gap-4">
-                      <div className="w-1.5 bg-indigo-600 h-6 rounded-full" />
-                      <h3 className="text-[13px] font-black text-gray-900 uppercase tracking-[0.2em] leading-none text-indigo-600">EXTRACTED CORE PARAMETERS</h3>
+                      <div className="w-1.5 bg-primary h-6 rounded-full" />
+                      <h3 className="text-[13px] font-black text-gray-900 uppercase tracking-[0.2em] leading-none text-primary">EXTRACTED CORE PARAMETERS</h3>
                     </div>
-                    <div className="px-4 py-1.5 bg-indigo-50 text-indigo-600 text-[9px] font-black rounded-full border border-indigo-100">
+                    <div className="px-4 py-1.5 bg-secondary text-primary text-[9px] font-black rounded-full border border-primary/20">
                        FACTUAL EXTRACTION
                     </div>
                   </div>
@@ -125,7 +125,7 @@ export default function ParamHub({ onBack, mailContent, onInitializeRFP }: Param
                   {/* COMMERCIAL LOGIC HEADER */}
                   <div className="flex items-center justify-between mb-12">
                      <div className="flex items-center gap-4">
-                        <div className="w-10 h-10 bg-indigo-50 rounded-xl flex items-center justify-center text-indigo-600">
+                        <div className="w-10 h-10 bg-secondary rounded-xl flex items-center justify-center text-primary border border-primary/20">
                            <DollarSign className="w-5 h-5" />
                         </div>
                         <h3 className="text-[14px] font-black text-gray-900 uppercase tracking-[0.2em] leading-none">COMMERCIAL LOGIC</h3>
@@ -146,7 +146,7 @@ export default function ParamHub({ onBack, mailContent, onInitializeRFP }: Param
                            <div className="absolute inset-x-2 inset-y-0 flex items-center pointer-events-none">
                               <div className="w-full h-2.5 bg-gray-50 rounded-full overflow-hidden border border-gray-100">
                                  <div 
-                                    className="h-full bg-indigo-600 transition-all duration-150" 
+                                    className="h-full bg-primary transition-all duration-150" 
                                     style={{ width: `${percentage}%` }}
                                  />
                               </div>
@@ -160,7 +160,7 @@ export default function ParamHub({ onBack, mailContent, onInitializeRFP }: Param
                               onChange={handleSliderChange}
                               className="absolute inset-x-0 w-full h-4 bg-transparent appearance-none cursor-pointer z-10 
                                        [&::-webkit-slider-thumb]:appearance-none [&::-webkit-slider-thumb]:w-10 [&::-webkit-slider-thumb]:h-10 
-                                       [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-indigo-600 
+                                       [&::-webkit-slider-thumb]:rounded-full [&::-webkit-slider-thumb]:bg-primary 
                                        [&::-webkit-slider-thumb]:border-[5px] [&::-webkit-slider-thumb]:border-white 
                                        [&::-webkit-slider-thumb]:shadow-2xl [&::-webkit-slider-thumb]:shadow-indigo-400 
                                        [&::-webkit-slider-thumb]:active:scale-110 [&::-webkit-slider-thumb]:transition-transform"
@@ -195,12 +195,12 @@ export default function ParamHub({ onBack, mailContent, onInitializeRFP }: Param
                               { label: 'Infrastructure High-Voltage', impact: '+1.5%' },
                               { label: 'Strategic Alignment', impact: '-2.8%' }
                            ].map((item, i) => (
-                              <div key={i} className="flex items-center justify-between p-5 bg-white border border-gray-100 rounded-2xl group hover:border-indigo-100 transition-all shadow-sm">
+                              <div key={i} className="flex items-center justify-between p-5 bg-white border border-gray-100 rounded-2xl group hover:border-primary/20 transition-all shadow-sm">
                                  <div className="flex items-center gap-4">
-                                    <div className="w-1.5 h-1.5 rounded-full bg-indigo-200 group-hover:bg-indigo-600 group-hover:scale-125 transition-all" />
+                                    <div className="w-1.5 h-1.5 rounded-full bg-primary/20 group-hover:bg-primary group-hover:scale-125 transition-all" />
                                     <span className="text-[11px] font-bold text-gray-700 uppercase tracking-tight">{item.label}</span>
                                  </div>
-                                 <span className="text-[11px] font-black text-indigo-600 tracking-tighter">{item.impact}</span>
+                                 <span className="text-[11px] font-black text-primary tracking-tighter">{item.impact}</span>
                               </div>
                            ))}
                         </div>
@@ -209,10 +209,10 @@ export default function ParamHub({ onBack, mailContent, onInitializeRFP }: Param
                </div>
 
                {/* FINAL ACTION AREA */}
-               <div className="p-10 bg-white border border-indigo-100 rounded-[44px] shadow-2xl shadow-indigo-500/10">
+               <div className="p-10 bg-white border border-primary/10 rounded-[44px] shadow-2xl shadow-primary/10">
                   <button 
                     onClick={handleFinalSubmit}
-                    className="w-full py-7 bg-indigo-600 text-white rounded-[32px] font-bold uppercase tracking-[0.2em] text-[13px] hover:bg-indigo-700 shadow-xl shadow-indigo-500/30 transition-all active:scale-95 flex items-center justify-center gap-4 group"
+                    className="w-full py-7 bg-primary text-white rounded-[32px] font-bold uppercase tracking-[0.2em] text-[13px] hover:bg-primary/90 shadow-xl shadow-primary/30 transition-all active:scale-95 flex items-center justify-center gap-4 group"
                   >
                     <span>INITIALIZE RFP</span>
                   </button>

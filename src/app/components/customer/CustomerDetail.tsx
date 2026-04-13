@@ -86,7 +86,7 @@ export default function CustomerDetail() {
           <div className="bg-white rounded-lg border border-gray-200 p-6">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-semibold text-gray-900">Recent RFQs</h2>
-              <Link to="/rfqs" className="text-sm text-indigo-600 hover:text-indigo-700">
+              <Link to="/rfqs" className="text-sm font-bold text-primary hover:text-primary/80 transition-colors uppercase tracking-widest">
                 View All
               </Link>
             </div>
@@ -117,7 +117,7 @@ export default function CustomerDetail() {
           <div className="bg-white rounded-lg border border-gray-200 p-6">
             <div className="flex items-center justify-between mb-4">
               <h2 className="text-lg font-semibold text-gray-900">Recent Quotations</h2>
-              <Link to="/quotations" className="text-sm text-indigo-600 hover:text-indigo-700">
+              <Link to="/quotations" className="text-sm font-bold text-primary hover:text-primary/80 transition-colors uppercase tracking-widest">
                 View All
               </Link>
             </div>

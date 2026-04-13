@@ -46,28 +46,28 @@ export default function MailList() {
                 placeholder="Search by subject, sender, or email..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full pl-10 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                className="w-full pl-10 pr-4 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:ring-2 focus:ring-primary/40 focus:border-transparent transition-all"
               />
             </div>
           </div>
           <div className="flex items-center gap-2 w-full md:w-auto">
             <button 
               onClick={() => setStatusFilter('all')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${statusFilter === 'all' ? 'bg-indigo-50 text-indigo-600' : 'text-gray-600 hover:bg-gray-50'}`}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${statusFilter === 'all' ? 'bg-secondary text-primary' : 'text-gray-600 hover:bg-gray-50'}`}
             >
               <Inbox className="w-4 h-4" />
               All
             </button>
             <button 
               onClick={() => setStatusFilter('unread')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${statusFilter === 'unread' ? 'bg-indigo-50 text-indigo-600' : 'text-gray-600 hover:bg-gray-50'}`}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${statusFilter === 'unread' ? 'bg-secondary text-primary' : 'text-gray-600 hover:bg-gray-50'}`}
             >
               <MailIcon className="w-4 h-4" />
               Unread
             </button>
             <button 
               onClick={() => setStatusFilter('archived')}
-              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${statusFilter === 'archived' ? 'bg-indigo-50 text-indigo-600' : 'text-gray-600 hover:bg-gray-50'}`}
+              className={`flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium transition-colors ${statusFilter === 'archived' ? 'bg-secondary text-primary' : 'text-gray-600 hover:bg-gray-50'}`}
             >
               <Archive className="w-4 h-4" />
               Archived
@@ -84,13 +84,13 @@ export default function MailList() {
               <Link
                 key={mail.id}
                 to={`/mails/${mail.id}`}
-                className={`flex items-center gap-4 p-4 hover:bg-indigo-50/30 transition-all cursor-pointer group ${
-                  mail.status === 'unread' ? 'bg-white border-l-4 border-l-indigo-500' : 'bg-gray-50/30'
+                className={`flex items-center gap-4 p-4 hover:bg-secondary/30 transition-all cursor-pointer group ${
+                  mail.status === 'unread' ? 'bg-white border-l-4 border-l-primary' : 'bg-gray-50/30'
                 }`}
               >
                 <div className="flex-shrink-0">
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center ${
-                    mail.status === 'unread' ? 'bg-indigo-100 text-indigo-600' : 'bg-gray-100 text-gray-500'
+                    mail.status === 'unread' ? 'bg-secondary text-primary' : 'bg-gray-100 text-gray-500'
                   }`}>
                     <MailIcon className="w-5 h-5" />
                   </div>
@@ -111,7 +111,7 @@ export default function MailList() {
                       </span>
                     </div>
                   </div>
-                  <h3 className={`text-sm mb-1 truncate ${mail.status === 'unread' ? 'font-semibold text-indigo-600' : 'text-gray-600'}`}>
+                  <h3 className={`text-sm mb-1 truncate ${mail.status === 'unread' ? 'font-semibold text-primary' : 'text-gray-600'}`}>
                     {mail.subject}
                   </h3>
                   <p className="text-xs text-gray-500 line-clamp-1">
@@ -137,7 +137,7 @@ export default function MailList() {
               <p className="text-gray-500 font-medium">No mails found matching your criteria</p>
               <button 
                 onClick={() => {setSearchQuery(''); setStatusFilter('all');}}
-                className="mt-4 text-indigo-600 hover:text-indigo-700 text-sm font-semibold"
+                className="mt-4 text-primary hover:text-primary/80 text-sm font-semibold"
               >
                 Clear all filters
               </button>
